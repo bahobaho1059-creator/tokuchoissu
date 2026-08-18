@@ -110,10 +110,12 @@ function confetti(){
 $(".compare-btn").onclick=()=>{
  const rp=n("#rp"),rq=n("#rq"),bp=n("#bp"),bq=n("#bq");
  if(!(rp>0&&rq>0&&bp>0&&bq>0)){alert("価格と内容量を入力してください");return}
- if($("#ru").value!==$("#bu").value){alert("同じ単位（g同士 / ml同士）で比較してください");return}
- const r=rp/rq*100,b=bp/bq*100,red=r<=b,diff=Math.abs(r-b);
- $("#winner").innerHTML=(red?"👑 赤コーナー":"👑 青コーナー")+"の方が<br>お得です！";
- $("#saving").textContent=`100${$("#ru").value}あたり ${diff.toFixed(1)}円お得！`;
+if($("#ru").value!==$("#bu").value){alert("同じ単位（g同士 / ml同士 / 個同士）で比較してください");return}
+const unit=$("#ru").value;
+const base=unit==="個" ? 1 : 100;
+const r=rp/rq*base,b=bp/bq*base,red=r<=b,diff=Math.abs(r-b);
+$("#winner").innerHTML=(red?"👑 赤コーナー":"👑 青コーナー")+"の方が<br>お得です！";
+$("#saving").textContent=`${base}${unit}あたり ${diff.toFixed(1)}円お得！`;
  $("#runit").textContent=r.toFixed(1)+"円";$("#bunit").textContent=b.toFixed(1)+"円";
  show("result");confetti();
 };
