@@ -11,7 +11,7 @@ body{display:flex;justify-content:center}
 #app{position:relative;width:min(100vw,711px);min-height:100dvh;overflow-x:hidden;background:#fffaf0}
 .screen{position:relative;width:100%;min-height:100dvh;background-size:100% auto;background-repeat:no-repeat;background-position:top center}
 #start{background-image:url("assets/fix1.jpeg");aspect-ratio:711/1536}
-#input{display:none;background-image:url("assets/fix2.jpeg");aspect-ratio:711/1536}
+#input{display:none;background-image:url("assets/fix2.jpeg");aspect-ratio:71/1536}
 #result{display:none;background-image:url("assets/fix3.jpeg");aspect-ratio:711/1536}
 .hit{position:absolute;border:0;background:transparent;cursor:pointer;-webkit-tap-highlight-color:transparent}
 .start-btn{left:26%;top:53.6%;width:48%;height:7.4%}
@@ -20,13 +20,23 @@ body{display:flex;justify-content:center}
 .home-btn{left:8%;bottom:0;width:25%;height:8%}
 .again-btn{left:44%;top:82%;width:50%;height:7%}
 .edit-btn{left:5%;top:82%;width:37%;height:7%}
-.field{position:absolute;border:0;outline:none;background:rgba(255,255,255,.02);font-size:clamp(18px,5.3vw,38px);text-align:right;color:#4a443d;padding:0 12px;border-radius:14px}
+.field{position:absolute;border:0;outline:none;background:#fffdf8;font-size:clamp(18px,5.3vw,38px);text-align:right;color:#4a443d;padding:0 12px;border-radius:14px}
 .field:focus{background:rgba(255,255,255,.65)}
 #rp{left:9%;top:37.3%;width:32%;height:6.2%}
 #rq{left:51%;top:37.3%;width:24%;height:6.2%}
 #bp{left:9%;top:57.8%;width:32%;height:6.2%}
 #bq{left:51%;top:57.8%;width:24%;height:6.2%}
-select.unit{position:absolute;border:0;outline:none;background:transparent;font-weight:700;color:#4c3b2e;font-size:clamp(16px,4.5vw,30px);appearance:none;text-align:center}
+select.unit{
+  position:absolute;
+  border:0;
+  outline:none;
+  background:#fffdf8;
+  font-weight:700;
+  color:#4c3b2e;
+  font-size:clamp(16px,4.5vw,30px);
+  appearance:none;
+  text-align:center
+}
 #ru{left:76%;top:37.3%;width:14%;height:6.2%}
 #bu{left:76%;top:57.8%;width:14%;height:6.2%}
 .dynamic{position:absolute;z-index:3;text-align:center;font-weight:700;pointer-events:none}
