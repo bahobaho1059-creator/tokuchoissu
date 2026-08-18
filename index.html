@@ -43,19 +43,19 @@ select.unit{position:absolute;border:0;outline:none;background:transparent;font-
 @keyframes fall{to{transform:translate3d(var(--x),105vh,0) rotate(720deg);opacity:.2}}
 @media(min-width:712px){#app{box-shadow:0 0 40px rgba(0,0,0,.12)}}
 .field{
-  background:linear-gradient(
-    to right,
-    transparent 0%,
-    transparent 58%,
-    #fffdf8 58%,
-    #fffdf8 100%
-  ) !important;
+  background:
+    linear-gradient(#fffdf8,#fffdf8)
+    82% 50% / 24% 66%
+    no-repeat !important;
   border:none !important;
   box-shadow:none !important;
 }
 
 select.unit{
-  background:#fffdf8 !important;
+  background:
+    linear-gradient(#fffdf8,#fffdf8)
+    36% 50% / 46% 66%
+    no-repeat !important;
   border:none !important;
   box-shadow:none !important;
 }
