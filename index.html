@@ -569,6 +569,22 @@ select.unit{
   width:13.5% !important;
 }
 
+/* =========================================================
+   Pass 22 — 中央カード整数表示＋下段suffix右端整列
+   黄色帯・計算ロジック・下段数値位置はPass 21を維持。
+   ========================================================= */
+/* 上段の単位文字と同じ右端ラインへ「円お得」「%お得」を揃える */
+#rtotalSuffix,#rrateSuffix{
+  left:20.7% !important;
+  width:14.4% !important;
+  text-align:right !important;
+}
+#btotalSuffix,#brateSuffix{
+  left:78.9% !important;
+  width:13.5% !important;
+  text-align:right !important;
+}
+
 </style>
 </head>
 
@@ -759,7 +775,7 @@ $(".compare-btn").onclick=()=>{
     FIX③のカード内ラベル・薄い矩形・「円」は背景固定。
     HTML側は単価数値だけを矩形中央へ表示する。
   */
-  // Pass 21: 中央カードは表示時だけ1円単位へ四捨五入。
+  // Pass 22: 中央カードは表示時だけ1円単位へ四捨五入。
   // 内部計算値 r / b 自体は丸めず、勝者判定・詳細計算の精度を維持する。
   $("#runit").textContent=String(Math.round(r));
   $("#bunit").textContent=String(Math.round(b));
