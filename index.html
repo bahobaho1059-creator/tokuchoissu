@@ -431,9 +431,7 @@ $(".compare-btn").onclick=()=>{
   const red=r<=b;
   const diff=Math.abs(r-b);
 
-  $("#winner").innerHTML=
-    (red?"👑 赤コーナー":"👑 青コーナー")+
-    "の方が<br>お得です！";
+  $("#winner").textContent = red ? "赤コーナー" : "青コーナー";
 
   $("#saving").textContent=
     `${base}${unit}あたり ${diff.toFixed(1)}円お得！`;
