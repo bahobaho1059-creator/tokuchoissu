@@ -184,13 +184,47 @@ select.unit{
   pointer-events:none
 }
 
-/* FIX3-final alignment pass 4 */
+/* FIX3-final alignment pass 5 */
 #winner{
-  left:24.8%;
-  top:27.78%;
-  width:28.8%;
-  font-size:clamp(18px,4.70vw,32px);
-  line-height:1.10
+  left:22.8%;
+  top:27.55%;
+  width:33.0%;
+  font-size:clamp(22px,6.0vw,38px);
+  line-height:1.06;
+  white-space:nowrap
+}
+
+#winnerPhraseCover{
+  position:absolute;
+  left:53.0%;
+  top:27.15%;
+  width:18.5%;
+  height:3.6%;
+  background:#fff;
+  z-index:2;
+  pointer-events:none
+}
+
+#winnerPhrase{
+  left:53.0%;
+  top:27.62%;
+  width:18.5%;
+  font-size:clamp(17px,4.6vw,30px);
+  line-height:1.05;
+  color:#4c3b2e;
+  white-space:nowrap
+}
+
+#winnerFrame{
+  position:absolute;
+  left:7.3%;
+  top:23.45%;
+  width:85.4%;
+  height:17.05%;
+  border:5px solid transparent;
+  border-radius:24px;
+  z-index:4;
+  pointer-events:none
 }
 
 #saving{
@@ -200,6 +234,20 @@ select.unit{
   font-size:clamp(13px,3.58vw,24px);
   line-height:1.08
 }
+
+#rlabelClean,
+#blabelClean{
+  position:absolute;
+  top:45.55%;
+  width:26.8%;
+  height:3.15%;
+  background:#fff;
+  z-index:2;
+  pointer-events:none
+}
+
+#rlabelClean{left:12.0%}
+#blabelClean{left:55.2%}
 
 #rlabel,
 #blabel{
@@ -217,18 +265,18 @@ select.unit{
 #runit,
 #bunit{
   top:49.60%;
-  width:19.6%;
+  width:24.0%;
   font-size:clamp(20px,5.28vw,35px);
   line-height:1.06
 }
 
 #runit{
-  left:17.8%;
+  left:16.0%;
   color:#ef8376
 }
 
 #bunit{
-  left:61.1%;
+  left:60.0%;
   color:#79b7df
 }
 
@@ -245,12 +293,23 @@ select.unit{
 #rprice,#rqty,#rdetailunit{left:10.0%}
 #bprice,#bqty,#bdetailunit{left:65.0%}
 
+#detailUnitClean{
+  position:absolute;
+  left:36.7%;
+  top:64.95%;
+  width:24.6%;
+  height:3.0%;
+  background:#fbfaf6;
+  z-index:2;
+  pointer-events:none
+}
+
 #detailUnitLabel{
-  left:35.9%;
-  top:65.58%;
-  width:21.2%;
-  font-size:clamp(8px,1.78vw,12px);
-  color:#4c3b2e;
+  left:35.6%;
+  top:65.52%;
+  width:22.0%;
+  font-size:clamp(9px,2.0vw,14px);
+  color:#2aa33d;
   line-height:1.02;
   white-space:nowrap
 }
@@ -427,9 +486,14 @@ select.unit{
   <div id="rcover" class="cover"></div>
   <div id="bcover" class="cover"></div>
 
+  <div id="winnerFrame"></div>
+  <div id="winnerPhraseCover"></div>
   <div id="winner" class="dynamic"></div>
+  <div id="winnerPhrase" class="dynamic">のほうが</div>
   <div id="saving" class="dynamic"></div>
 
+  <div id="rlabelClean"></div>
+  <div id="blabelClean"></div>
   <div id="rlabel" class="dynamic"></div>
   <div id="blabel" class="dynamic"></div>
   <div id="runit" class="dynamic"></div>
@@ -441,6 +505,7 @@ select.unit{
   <div id="bqty" class="dynamic detail-value"></div>
   <div id="rdetailunit" class="dynamic detail-value"></div>
   <div id="bdetailunit" class="dynamic detail-value"></div>
+  <div id="detailUnitClean"></div>
   <div id="detailUnitLabel" class="dynamic"></div>
 
   <div id="totalSuffixCover" class="metric-suffix-cover"></div>
@@ -557,6 +622,8 @@ $(".compare-btn").onclick=()=>{
   const diff=Math.abs(r-b);
 
   $("#winner").textContent = red ? "赤コーナー" : "青コーナー";
+  $("#winner").style.color = red ? "#e53935" : "#168fe8";
+  $("#winnerFrame").style.borderColor = red ? "#e53935" : "#168fe8";
 
   /*
     FIX3-final側に「円お得！」が残っているため、
