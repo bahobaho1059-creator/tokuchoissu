@@ -184,7 +184,7 @@ select.unit{
   pointer-events:none
 }
 
-/* FIX3-final alignment pass 9 */
+/* FIX3-final alignment pass 9.1 */
 #winner{
   left:22.2%;
   top:27.45%;
@@ -216,6 +216,17 @@ select.unit{
   line-height:1.08
 }
 
+
+#savingLabel{
+  left:23.5%;
+  top:37.16%;
+  width:20.5%;
+  font-size:clamp(13px,3.45vw,23px);
+  line-height:1.08;
+  color:#4c3b2e;
+  white-space:nowrap
+}
+
 #runit,
 #bunit{
   top:49.22%;
@@ -232,6 +243,26 @@ select.unit{
 #bunit{
   left:58.7%;
   color:#79b7df
+}
+
+
+#rlabel,
+#blabel{
+  top:46.10%;
+  width:26.0%;
+  font-size:clamp(10px,2.35vw,16px);
+  line-height:1.05;
+  white-space:nowrap
+}
+
+#rlabel{
+  left:12.2%;
+  color:#e53935
+}
+
+#blabel{
+  left:55.4%;
+  color:#168fe8
 }
 
 
@@ -262,6 +293,18 @@ select.unit{
   font-size:clamp(10px,2.6vw,18px);
   color:#2aa33d;
   line-height:1.05;
+  text-align:center;
+  white-space:nowrap
+}
+
+
+#detailUnitLabel{
+  left:36.7%;
+  top:65.54%;
+  width:24.6%;
+  font-size:clamp(8px,1.75vw,12px);
+  color:#2aa33d;
+  line-height:1.02;
   text-align:center;
   white-space:nowrap
 }
@@ -458,8 +501,11 @@ select.unit{
 
   <div id="winnerFrame"></div>
   <div id="winner" class="dynamic"></div>
+  <div id="savingLabel" class="dynamic"></div>
   <div id="saving" class="dynamic"></div>
 
+  <div id="rlabel" class="dynamic"></div>
+  <div id="blabel" class="dynamic"></div>
   <div id="runit" class="dynamic"></div>
   <div id="bunit" class="dynamic"></div>
 
@@ -592,10 +638,15 @@ $(".compare-btn").onclick=()=>{
   $("#winner").style.color = red ? "#e53935" : "#168fe8";
   $("#winnerFrame").style.borderColor = red ? "#e53935" : "#168fe8";
 
+  $("#rlabel").textContent=`${label}の単価`;
+  $("#blabel").textContent=`${label}の単価`;
+  $("#detailUnitLabel").textContent=`${label}の単価`;
+
   /*
     FIX3-final側に「円お得！」が残っているため、
     ここでは「比較単位 + 差額」だけを動的表示する。
   */
+  $("#savingLabel").textContent=label;
   $("#saving").textContent=diff.toFixed(1);
 
   /*
