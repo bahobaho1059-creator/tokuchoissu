@@ -44,6 +44,26 @@ select.unit{position:absolute;border:0;outline:none;background:transparent;font-
   height:19%;
   border-radius:20px;
 }
+#rlabelcover{
+  position:absolute;
+  left:10%;
+  top:46.1%;
+  width:34%;
+  height:2.8%;
+  background:#fffdf8;
+  z-index:2;
+  pointer-events:none;
+}
+
+#blabelcover{
+  position:absolute;
+  left:56%;
+  top:46.1%;
+  width:34%;
+  height:2.8%;
+  background:#fffdf8;
+  z-index:2;
+  pointer-events:none;
 }
 #rcover{left:10%;top:48%;width:34%;height:7%}
 #bcover{left:56%;top:48%;width:34%;height:7%}
@@ -89,6 +109,8 @@ select.unit{
 
 <section id="result" class="screen">
 <div id="wincover" class="cover"></div><div id="rcover" class="cover"></div><div id="bcover" class="cover"></div>
+<div id="rlabelcover"></div>
+<div id="blabelcover"></div>
 <div id="winner" class="dynamic"></div>
 <div id="saving" class="dynamic"></div>
 <div id="rlabel" class="dynamic"></div>
