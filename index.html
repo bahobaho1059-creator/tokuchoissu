@@ -298,15 +298,10 @@ select.unit{
 }
 
 
+/* Pass 12: 下段中央の単価ラベルはFIX③の固定文字をそのまま使用。
+   DOMはJS互換性維持のため残し、表示だけ無効化する。 */
 #detailUnitLabel{
-  left:36.7%;
-  top:65.62%;
-  width:24.6%;
-  font-size:clamp(7px,1.55vw,11px);
-  color:#2aa33d;
-  line-height:1.02;
-  text-align:center;
-  white-space:nowrap
+  display:none
 }
 
 #rprice,#bprice{top:57.72%;width:14%}
