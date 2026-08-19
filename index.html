@@ -443,81 +443,130 @@ select.unit{
 }
 
 
-/* Pass 18: 新FIX③（711x1536）に動的表示を再整列。
-   計算・比較ロジックには触れず、表示座標と重複ラベルのみ調整。 */
-#winner{
-  left:22.0%;
-  top:29.72%;
-  width:31.5%;
-}
+/* =========================================================
+   Pass 18 — 新FIX③ 座標再マッピング
+   Fx【動作保証】の計算・イベント・入力UIは変更しない。
+   新FIX③の固定UIを使い、動的な値だけ空欄へ配置する。
+   ========================================================= */
 
-/* 新FIX③には100gあたりが背景固定で存在するため、100g表示の重複を防止 */
-#savingLabel{
-  display:none !important;
-}
-#saving{
-  left:44.0%;
-  top:39.18%;
-  width:12.0%;
-}
-
-/* 中央カード：背景の固定ラベルを活かし、数値のみ薄色矩形へ */
-#runit,#bunit{
-  top:51.45%;
-  width:25.5%;
-}
-#runit{left:13.2%}
-#bunit{left:57.2%}
-
-/* 下段：新FIX③の行位置へ数値を再整列 */
-#rprice,#bprice{top:61.18%;width:15.2%}
-#rqty,#bqty{top:64.72%;width:15.2%}
-#rdetailunit,#bdetailunit{top:68.18%;width:15.2%}
-#rprice,#rqty,#rdetailunit{left:9.2%}
-#bprice,#bqty,#bdetailunit{left:64.1%}
-
-/* 新FIX③には汎用単価ラベルが背景固定で存在するため重複表示しない */
+/* 新FIX③に固定で存在するためHTML側の重複ラベルは表示しない */
+#savingLabel,
 #detailUnitLabel{
   display:none !important;
 }
 
-/* 「総額差」を正式仕様「同じ量なら」へ置換する位置を新FIX③へ合わせる */
+/* 上段：勝者名 */
+#winner{
+  left:24.0% !important;
+  top:30.55% !important;
+  width:29.5% !important;
+  font-size:clamp(20px,5.15vw,34px) !important;
+  line-height:1.04 !important;
+}
+
+/* 黄色帯：差額数値だけを中央へ */
+#saving{
+  left:43.3% !important;
+  top:39.82% !important;
+  width:14.0% !important;
+  font-size:clamp(13px,3.45vw,23px) !important;
+  line-height:1.04 !important;
+}
+
+/* 中央カード：FIX③の薄色矩形へ数値だけ配置 */
+#runit,
+#bunit{
+  top:52.05% !important;
+  width:25.0% !important;
+  font-size:clamp(20px,5.15vw,34px) !important;
+  line-height:1.02 !important;
+}
+#runit{left:14.6% !important}
+#bunit{left:58.7% !important}
+
+/* 下段：FIX③の5行の矩形位置へ動的数値を再配置 */
+#rprice,#bprice{
+  top:61.25% !important;
+  width:15.5% !important;
+}
+#rqty,#bqty{
+  top:64.90% !important;
+  width:15.5% !important;
+}
+#rdetailunit,#bdetailunit{
+  top:68.48% !important;
+  width:15.5% !important;
+}
+#rprice,#rqty,#rdetailunit{left:9.8% !important}
+#bprice,#bqty,#bdetailunit{left:64.2% !important}
+
+/* 正式変更：「総額差」→「同じ量なら」 */
 #sameQtyLabelCover{
-  left:36.7%;
-  top:71.72%;
-  width:24.6%;
-  height:3.15%;
-  background:#fbfaf6;
+  left:37.0% !important;
+  top:71.30% !important;
+  width:25.0% !important;
+  height:3.10% !important;
+  background:#fbfaf6 !important;
 }
 #sameQtyLabel{
-  left:36.7%;
-  top:72.70%;
-  width:24.6%;
+  left:37.0% !important;
+  top:72.35% !important;
+  width:25.0% !important;
+  font-size:clamp(10px,2.45vw,17px) !important;
+  line-height:1.02 !important;
 }
 
+/* 「同じ量なら」値 */
 #rtotaldiff,#btotaldiff{
-  top:72.70%;
-  width:14.8%
+  top:72.28% !important;
+  width:14.8% !important;
 }
-#rrate,#brate{
-  top:76.32%;
-  width:14.8%
-}
-#rtotaldiff,#rrate{left:9.2%}
-#btotaldiff,#brate{left:64.1%}
+#rtotaldiff{left:9.7% !important}
+#btotaldiff{left:64.1% !important}
 
-/* 左側背景固定の「円お得」「%お得」を勝者側動的表示へ切替えるcoverも新位置へ */
-.metric-suffix-cover{
-  left:20.8%;
-  width:15.0%;
-  height:2.75%;
+/* お得率 */
+#rrate,#brate{
+  top:75.92% !important;
+  width:14.8% !important;
 }
-#totalSuffixCover{top:72.18%}
-#rateSuffixCover{top:75.82%}
-#rtotalSuffix{left:20.7%;top:72.70%;width:14.4%}
-#rrateSuffix{left:20.7%;top:76.32%;width:14.4%}
-#btotalSuffix{left:79.1%;top:72.70%;width:13.7%}
-#brateSuffix{left:79.1%;top:76.32%;width:13.7%}
+#rrate{left:9.7% !important}
+#brate{left:64.1% !important}
+
+/* 左側背景に固定された「円お得」「%お得」を隠し、
+   勝者側だけ動的suffixを出す。 */
+#totalSuffixCover{
+  left:20.8% !important;
+  top:71.92% !important;
+  width:15.3% !important;
+  height:2.50% !important;
+}
+#rateSuffixCover{
+  left:20.8% !important;
+  top:75.55% !important;
+  width:15.3% !important;
+  height:2.50% !important;
+}
+
+#rtotalSuffix{
+  left:20.7% !important;
+  top:72.28% !important;
+  width:14.4% !important;
+}
+#btotalSuffix{
+  left:79.2% !important;
+  top:72.28% !important;
+  width:13.5% !important;
+}
+#rrateSuffix{
+  left:20.7% !important;
+  top:75.92% !important;
+  width:14.4% !important;
+}
+#brateSuffix{
+  left:79.2% !important;
+  top:75.92% !important;
+  width:13.5% !important;
+}
 
 </style>
 </head>
