@@ -184,37 +184,17 @@ select.unit{
   pointer-events:none
 }
 
-/* FIX3-final alignment pass 8.1 */
+/* FIX3-final alignment pass 9 */
 #winner{
   left:22.2%;
-  top:27.22%;
-  width:33.6%;
-  font-size:clamp(22px,6.0vw,38px);
+  top:27.45%;
+  width:30.8%;
+  font-size:clamp(20px,5.4vw,35px);
   font-weight:800;
   line-height:1.06;
   white-space:nowrap
 }
 
-#winnerPhraseCover{
-  position:absolute;
-  left:52.4%;
-  top:26.95%;
-  width:22.5%;
-  height:4.05%;
-  background:#fff;
-  z-index:2;
-  pointer-events:none
-}
-
-#winnerPhrase{
-  left:53.0%;
-  top:27.48%;
-  width:18.5%;
-  font-size:clamp(15px,4.1vw,27px);
-  line-height:1.06;
-  color:#4c3b2e;
-  white-space:nowrap
-}
 
 #winnerFrame{
   position:absolute;
@@ -229,89 +209,32 @@ select.unit{
 }
 
 #saving{
-  left:16.0%;
+  left:42.0%;
   top:37.16%;
-  width:44.8%;
+  width:17.0%;
   font-size:clamp(13px,3.58vw,24px);
   line-height:1.08
 }
 
-#rlabelClean,
-#blabelClean{
-  position:absolute;
-  top:45.72%;
-  width:24.6%;
-  height:2.75%;
-  background:#fff;
-  z-index:2;
-  pointer-events:none
-}
-
-#rlabelClean{left:13.1%}
-#blabelClean{left:56.3%}
-
-#rlabel,
-#blabel{
-  top:46.08%;
-  width:24.8%;
-  font-size:clamp(10px,2.42vw,16px);
-  color:#4c3b2e;
-  line-height:1.06;
-  white-space:nowrap
-}
-
-#rlabel{left:12.9%}
-#blabel{left:56.1%}
-
 #runit,
 #bunit{
-  top:49.18%;
-  width:24.0%;
+  top:49.22%;
+  width:25.5%;
   font-size:clamp(20px,5.28vw,35px);
   line-height:1.06
 }
 
 #runit{
-  left:15.5%;
+  left:14.7%;
   color:#ef8376
 }
 
 #bunit{
-  left:59.5%;
+  left:58.7%;
   color:#79b7df
 }
 
 
-.card-yen-cover{
-  position:absolute;
-  top:48.48%;
-  width:8.0%;
-  height:3.65%;
-  background:#fff;
-  z-index:2;
-  pointer-events:none
-}
-
-#ryenCover{left:36.5%}
-#byenCover{left:79.6%}
-
-.card-yen{
-  top:49.18%;
-  width:7.0%;
-  font-size:clamp(16px,4.2vw,29px);
-  line-height:1.06;
-  font-weight:700
-}
-
-#ryen{
-  left:36.7%;
-  color:#ef8376
-}
-
-#byen{
-  left:79.8%;
-  color:#79b7df
-}
 
 .detail-value{
   font-size:clamp(12px,3.4vw,23px);
@@ -320,33 +243,11 @@ select.unit{
 }
 
 
-.detail-heading-cover{
-  position:absolute;
-  left:20.0%;
-  top:54.55%;
-  width:24.0%;
-  height:3.15%;
-  background:#fff;
-  z-index:2;
-  pointer-events:none
-}
 
-#detailHeading{
-  left:15.8%;
-  top:55.00%;
-  width:28.0%;
-  font-size:clamp(15px,4.0vw,27px);
-  color:#2b2b2b;
-  line-height:1.05;
-  text-align:left;
-  background:#fff;
-  border:0;
-  box-shadow:none
-}
-
-.detail-center-cover{
+#sameQtyLabelCover{
   position:absolute;
   left:36.7%;
+  top:68.62%;
   width:24.6%;
   height:3.0%;
   background:#fbfaf6;
@@ -354,13 +255,9 @@ select.unit{
   pointer-events:none
 }
 
-#priceLabelCover{top:57.05%}
-#qtyLabelCover{top:60.90%}
-#sameQtyLabelCover{top:68.62%}
-#rateLabelCover{top:72.50%}
-
-.detail-center-label{
+#sameQtyLabel{
   left:36.7%;
+  top:69.30%;
   width:24.6%;
   font-size:clamp(10px,2.6vw,18px);
   color:#2aa33d;
@@ -369,11 +266,6 @@ select.unit{
   white-space:nowrap
 }
 
-#priceLabel{top:57.72%}
-#qtyLabel{top:61.55%}
-#sameQtyLabel{top:69.30%}
-#rateLabel{top:73.14%}
-
 #rprice,#bprice{top:57.72%;width:14%}
 #rqty,#bqty{top:61.55%;width:14%}
 #rdetailunit,#bdetailunit{top:65.42%;width:14%}
@@ -381,27 +273,6 @@ select.unit{
 #rprice,#rqty,#rdetailunit{left:10.0%}
 #bprice,#bqty,#bdetailunit{left:65.0%}
 
-#detailUnitClean{
-  position:absolute;
-  left:36.7%;
-  top:64.95%;
-  width:24.6%;
-  height:3.0%;
-  background:#fbfaf6;
-  z-index:2;
-  pointer-events:none
-}
-
-#detailUnitLabel{
-  left:36.7%;
-  top:65.54%;
-  width:24.6%;
-  font-size:clamp(8px,1.82vw,13px);
-  color:#2aa33d;
-  line-height:1.02;
-  text-align:center;
-  white-space:nowrap
-}
 
 /* 総額差・お得率 */
 .result-metric{
@@ -535,22 +406,9 @@ select.unit{
   box-shadow:none !important;
 }
 
-/* Pass 8.1: card inner ghost-box cleanup */
-#rlabelClean,
-#blabelClean,
-#ryenCover,
-#byenCover{
-  border:none !important;
-  outline:none !important;
-  box-shadow:none !important;
-}
-
-#rlabel,
-#blabel,
+/* Pass 9: FIX③の矩形を正式な数値表示欄として使用 */
 #runit,
-#bunit,
-#ryen,
-#byen{
+#bunit{
   background:transparent !important;
   border:none !important;
   outline:none !important;
@@ -599,34 +457,16 @@ select.unit{
   <div id="bcover" class="cover"></div>
 
   <div id="winnerFrame"></div>
-  <div id="winnerPhraseCover"></div>
   <div id="winner" class="dynamic"></div>
-  <div id="winnerPhrase" class="dynamic">のほうが</div>
   <div id="saving" class="dynamic"></div>
 
-  <div id="rlabelClean"></div>
-  <div id="blabelClean"></div>
-  <div id="rlabel" class="dynamic"></div>
-  <div id="blabel" class="dynamic"></div>
   <div id="runit" class="dynamic"></div>
   <div id="bunit" class="dynamic"></div>
-  <div id="ryenCover" class="card-yen-cover"></div>
-  <div id="byenCover" class="card-yen-cover"></div>
-  <div id="ryen" class="dynamic card-yen">円</div>
-  <div id="byen" class="dynamic card-yen">円</div>
 
-  <div id="detailHeadingCover" class="detail-heading-cover"></div>
-  <div id="detailHeading" class="dynamic">詳しく比較</div>
 
-  <div id="priceLabelCover" class="detail-center-cover"></div>
-  <div id="qtyLabelCover" class="detail-center-cover"></div>
   <div id="sameQtyLabelCover" class="detail-center-cover"></div>
-  <div id="rateLabelCover" class="detail-center-cover"></div>
 
-  <div id="priceLabel" class="dynamic detail-center-label">価格</div>
-  <div id="qtyLabel" class="dynamic detail-center-label">内容量</div>
   <div id="sameQtyLabel" class="dynamic detail-center-label">同じ量なら</div>
-  <div id="rateLabel" class="dynamic detail-center-label">お得率</div>
 
   <div id="rprice" class="dynamic detail-value"></div>
   <div id="bprice" class="dynamic detail-value"></div>
@@ -634,8 +474,6 @@ select.unit{
   <div id="bqty" class="dynamic detail-value"></div>
   <div id="rdetailunit" class="dynamic detail-value"></div>
   <div id="bdetailunit" class="dynamic detail-value"></div>
-  <div id="detailUnitClean"></div>
-  <div id="detailUnitLabel" class="dynamic"></div>
 
   <div id="totalSuffixCover" class="metric-suffix-cover"></div>
   <div id="rateSuffixCover" class="metric-suffix-cover"></div>
@@ -758,25 +596,19 @@ $(".compare-btn").onclick=()=>{
     FIX3-final側に「円お得！」が残っているため、
     ここでは「比較単位 + 差額」だけを動的表示する。
   */
-  $("#saving").textContent=`${label} ${diff.toFixed(1)}`;
+  $("#saving").textContent=diff.toFixed(1);
 
   /*
-    カード上部の空欄は、背景から削除済みの
-    「100g/100ml/1個あたりの単価」を動的に戻す領域。
-  */
-  $("#rlabel").textContent=`${label}の単価`;
-  $("#blabel").textContent=`${label}の単価`;
-
-  /*
-    カード下部は背景に「円」が固定で残っているため、
-    数字だけを表示する。
+    FIX③のカード内ラベル・薄い矩形・「円」は背景固定。
+    HTML側は単価数値だけを矩形中央へ表示する。
   */
   $("#runit").textContent=r.toFixed(1);
   $("#bunit").textContent=b.toFixed(1);
 
   /*
-    くわしい比較：価格・内容量・比較単価。
-    背景側に円 / g/ml/個が残っているため数字だけ入れる。
+    FIX③の「くわしい比較」「価格」「内容量」
+    「100g/100ml/1個あたりの単価」「お得率」は背景固定。
+    HTML側は各欄へ数値だけを表示する。
   */
   $("#rprice").textContent=rp.toLocaleString();
   $("#bprice").textContent=bp.toLocaleString();
@@ -784,7 +616,6 @@ $(".compare-btn").onclick=()=>{
   $("#bqty").textContent=bq.toLocaleString();
   $("#rdetailunit").textContent=r.toFixed(1);
   $("#bdetailunit").textContent=b.toFixed(1);
-  $("#detailUnitLabel").textContent=`${label}の単価`;
 
   /*
     総額差:
