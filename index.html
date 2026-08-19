@@ -52,7 +52,7 @@ body{
 
 #result{
   display:none;
-  background-image:url("assets/FIX3-final.PNG");
+  background-image:url("assets/FIX3-final.PNG?v=20260820-pass17");
   aspect-ratio:711/1536
 }
 
@@ -431,12 +431,11 @@ select.unit{
   box-shadow:none !important;
 }
 
-/* Pass 16: 中央カード訂正FIX。
-   HTML製ラベル・中央カード用coverを完全撤去し、FIX③の背景UIを露出。
-   動的表示は単価数値のみ。数値はFIX③既存の薄色矩形中央へ配置する。 */
+/* Pass 17: 新FIX③を確実に読み込み、中央カードの動的数値だけを
+   FIX③既存の薄色矩形中央へ再配置。JS/計算ロジックは変更しない。 */
 #runit,
 #bunit{
-  top:49.22%;
+  top:47.55%;
   background:transparent !important;
   border:none !important;
   outline:none !important;
