@@ -444,7 +444,7 @@ select.unit{
 
 
 /* =========================================================
-   Pass 18 — 新FIX③ 座標再マッピング
+   Pass 21 — 黄色帯中央化＋中央カード整数四捨五入
    Fx【動作保証】の計算・イベント・入力UIは変更しない。
    新FIX③の固定UIを使い、動的な値だけ空欄へ配置する。
    ========================================================= */
@@ -466,11 +466,12 @@ select.unit{
 
 /* 黄色帯：差額数値だけを中央へ */
 #saving{
-  left:43.3% !important;
+  left:46.6% !important;
   top:39.82% !important;
-  width:14.0% !important;
-  font-size:clamp(13px,3.45vw,23px) !important;
+  width:11.5% !important;
+  font-size:clamp(12px,3.2vw,22px) !important;
   line-height:1.04 !important;
+  white-space:nowrap !important;
 }
 
 /* 中央カード：FIX③の薄色矩形へ数値だけ配置 */
@@ -758,8 +759,10 @@ $(".compare-btn").onclick=()=>{
     FIX③のカード内ラベル・薄い矩形・「円」は背景固定。
     HTML側は単価数値だけを矩形中央へ表示する。
   */
-  $("#runit").textContent=r.toFixed(1);
-  $("#bunit").textContent=b.toFixed(1);
+  // Pass 21: 中央カードは表示時だけ1円単位へ四捨五入。
+  // 内部計算値 r / b 自体は丸めず、勝者判定・詳細計算の精度を維持する。
+  $("#runit").textContent=String(Math.round(r));
+  $("#bunit").textContent=String(Math.round(b));
 
   /*
     FIX③の「くわしい比較」「価格」「内容量」
