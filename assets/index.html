@@ -184,7 +184,7 @@ select.unit{
   pointer-events:none
 }
 
-/* FIX3-final alignment pass 2 */
+/* FIX3-final alignment pass 3 */
 #winner{
   left:24.6%;
   top:27.75%;
@@ -245,14 +245,64 @@ select.unit{
 #bprice,#bqty,#bdetailunit{left:65.0%}
 
 #detailUnitLabel{
-  left:35.0%;
-  top:65.48%;
-  width:23.0%;
-  font-size:clamp(8px,2.05vw,14px);
+  left:35.5%;
+  top:65.52%;
+  width:22.0%;
+  font-size:clamp(8px,1.9vw,13px);
   color:#4c3b2e;
   line-height:1.05;
   white-space:nowrap
 }
+
+/* 総額差・お得率 */
+.result-metric{
+  font-size:clamp(12px,3.2vw,22px);
+  color:#4c3b2e;
+  line-height:1.08
+}
+
+#rtotaldiff,#btotaldiff{
+  top:69.28%;
+  width:14%
+}
+
+#rrate,#brate{
+  top:73.12%;
+  width:14%
+}
+
+#rtotaldiff,#rrate{left:10.0%}
+#btotaldiff,#brate{left:65.0%}
+
+/*
+  FIX3-finalには左側だけ「円お得」「%お得」が固定で残っている。
+  勝者側へ動的に出すため、その固定文字だけ白で隠し、
+  HTML側から左右どちらにも出せるようにする。
+*/
+.metric-suffix-cover{
+  position:absolute;
+  left:21.2%;
+  width:14.2%;
+  height:2.55%;
+  background:#fffdf8;
+  z-index:2;
+  pointer-events:none
+}
+
+#totalSuffixCover{top:68.92%}
+#rateSuffixCover{top:72.78%}
+
+.metric-suffix{
+  font-size:clamp(10px,2.6vw,18px);
+  color:#4c3b2e;
+  line-height:1.08;
+  white-space:nowrap
+}
+
+#rtotalSuffix{left:20.8%;top:69.28%;width:14.5%}
+#rrateSuffix{left:20.8%;top:73.12%;width:14.5%}
+#btotalSuffix{left:79.0%;top:69.28%;width:14.0%}
+#brateSuffix{left:79.0%;top:73.12%;width:14.0%}
 
 /*
   旧背景用coverはFIX3-finalでは不要。
@@ -392,6 +442,19 @@ select.unit{
   <div id="bdetailunit" class="dynamic detail-value"></div>
   <div id="detailUnitLabel" class="dynamic"></div>
 
+  <div id="totalSuffixCover" class="metric-suffix-cover"></div>
+  <div id="rateSuffixCover" class="metric-suffix-cover"></div>
+
+  <div id="rtotaldiff" class="dynamic result-metric"></div>
+  <div id="btotaldiff" class="dynamic result-metric"></div>
+  <div id="rrate" class="dynamic result-metric"></div>
+  <div id="brate" class="dynamic result-metric"></div>
+
+  <div id="rtotalSuffix" class="dynamic metric-suffix"></div>
+  <div id="btotalSuffix" class="dynamic metric-suffix"></div>
+  <div id="rrateSuffix" class="dynamic metric-suffix"></div>
+  <div id="brateSuffix" class="dynamic metric-suffix"></div>
+
   <button class="hit back-btn" aria-label="もどる"></button>
   <button class="hit edit-btn" aria-label="入力に戻って修正"></button>
   <button class="hit again-btn" aria-label="もう一度比較する"></button>
@@ -525,6 +588,40 @@ $(".compare-btn").onclick=()=>{
   $("#rdetailunit").textContent=r.toFixed(1);
   $("#bdetailunit").textContent=b.toFixed(1);
   $("#detailUnitLabel").textContent=`${label}の単価`;
+
+  /*
+    総額差:
+    内容量の多い商品と同じ量を買った場合に、
+    もう一方はいくらになるかを単価から換算し、その差を表示。
+    例: 50g/280円 vs 70g/350円
+        70gにそろえると 392円 vs 350円 → 42円差。
+  */
+  const commonQty=Math.max(rq,bq);
+  const redAtCommon=(r/base)*commonQty;
+  const blueAtCommon=(b/base)*commonQty;
+  const totalDiff=Math.abs(redAtCommon-blueAtCommon);
+
+  /*
+    お得率:
+    高い方の比較単価に対して、安い方が何%安いか。
+  */
+  const betterRate=(diff/Math.max(r,b))*100;
+
+  const totalText=totalDiff.toLocaleString("ja-JP",{
+    minimumFractionDigits:1,
+    maximumFractionDigits:1
+  });
+  const rateText=betterRate.toFixed(1);
+
+  $("#rtotaldiff").textContent=red ? totalText : "";
+  $("#btotaldiff").textContent=red ? "" : totalText;
+  $("#rrate").textContent=red ? rateText : "";
+  $("#brate").textContent=red ? "" : rateText;
+
+  $("#rtotalSuffix").textContent=red ? "円お得" : "";
+  $("#btotalSuffix").textContent=red ? "" : "円お得";
+  $("#rrateSuffix").textContent=red ? "%お得" : "";
+  $("#brateSuffix").textContent=red ? "" : "%お得";
 
   show("result");
   confetti();
