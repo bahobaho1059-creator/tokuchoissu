@@ -184,7 +184,7 @@ select.unit{
   pointer-events:none
 }
 
-/* FIX3-final alignment pass 8 */
+/* FIX3-final alignment pass 8.1 */
 #winner{
   left:22.2%;
   top:27.22%;
@@ -207,10 +207,10 @@ select.unit{
 }
 
 #winnerPhrase{
-  left:53.9%;
+  left:53.0%;
   top:27.48%;
   width:18.5%;
-  font-size:clamp(17px,4.6vw,30px);
+  font-size:clamp(15px,4.1vw,27px);
   line-height:1.06;
   color:#4c3b2e;
   white-space:nowrap
@@ -322,23 +322,23 @@ select.unit{
 
 .detail-heading-cover{
   position:absolute;
-  left:11.0%;
-  top:54.38%;
-  width:34.5%;
-  height:3.55%;
+  left:20.0%;
+  top:54.55%;
+  width:24.0%;
+  height:3.15%;
   background:#fff;
   z-index:2;
   pointer-events:none
 }
 
 #detailHeading{
-  left:34.0%;
+  left:15.8%;
   top:55.00%;
-  width:32.0%;
-  font-size:clamp(15px,4.2vw,28px);
+  width:28.0%;
+  font-size:clamp(15px,4.0vw,27px);
   color:#2b2b2b;
   line-height:1.05;
-  text-align:center;
+  text-align:left;
   background:#fff;
   border:0;
   box-shadow:none
@@ -534,6 +534,29 @@ select.unit{
   border:none !important;
   box-shadow:none !important;
 }
+
+/* Pass 8.1: card inner ghost-box cleanup */
+#rlabelClean,
+#blabelClean,
+#ryenCover,
+#byenCover{
+  border:none !important;
+  outline:none !important;
+  box-shadow:none !important;
+}
+
+#rlabel,
+#blabel,
+#runit,
+#bunit,
+#ryen,
+#byen{
+  background:transparent !important;
+  border:none !important;
+  outline:none !important;
+  box-shadow:none !important;
+}
+
 </style>
 </head>
 
@@ -593,7 +616,7 @@ select.unit{
   <div id="byen" class="dynamic card-yen">円</div>
 
   <div id="detailHeadingCover" class="detail-heading-cover"></div>
-  <div id="detailHeading" class="dynamic">くわしい比較</div>
+  <div id="detailHeading" class="dynamic">詳しく比較</div>
 
   <div id="priceLabelCover" class="detail-center-cover"></div>
   <div id="qtyLabelCover" class="detail-center-cover"></div>
