@@ -52,7 +52,7 @@ body{
 
 #result{
   display:none;
-  background-image:url("assets/FIX3-final.PNG?v=20260820-pass17");
+  background-image:url("assets/FIX3-final.PNG?v=20260820-pass18");
   aspect-ratio:711/1536
 }
 
@@ -441,6 +441,83 @@ select.unit{
   outline:none !important;
   box-shadow:none !important;
 }
+
+
+/* Pass 18: 新FIX③（711x1536）に動的表示を再整列。
+   計算・比較ロジックには触れず、表示座標と重複ラベルのみ調整。 */
+#winner{
+  left:22.0%;
+  top:29.72%;
+  width:31.5%;
+}
+
+/* 新FIX③には100gあたりが背景固定で存在するため、100g表示の重複を防止 */
+#savingLabel{
+  display:none !important;
+}
+#saving{
+  left:44.0%;
+  top:39.18%;
+  width:12.0%;
+}
+
+/* 中央カード：背景の固定ラベルを活かし、数値のみ薄色矩形へ */
+#runit,#bunit{
+  top:51.45%;
+  width:25.5%;
+}
+#runit{left:13.2%}
+#bunit{left:57.2%}
+
+/* 下段：新FIX③の行位置へ数値を再整列 */
+#rprice,#bprice{top:61.18%;width:15.2%}
+#rqty,#bqty{top:64.72%;width:15.2%}
+#rdetailunit,#bdetailunit{top:68.18%;width:15.2%}
+#rprice,#rqty,#rdetailunit{left:9.2%}
+#bprice,#bqty,#bdetailunit{left:64.1%}
+
+/* 新FIX③には汎用単価ラベルが背景固定で存在するため重複表示しない */
+#detailUnitLabel{
+  display:none !important;
+}
+
+/* 「総額差」を正式仕様「同じ量なら」へ置換する位置を新FIX③へ合わせる */
+#sameQtyLabelCover{
+  left:36.7%;
+  top:71.72%;
+  width:24.6%;
+  height:3.15%;
+  background:#fbfaf6;
+}
+#sameQtyLabel{
+  left:36.7%;
+  top:72.70%;
+  width:24.6%;
+}
+
+#rtotaldiff,#btotaldiff{
+  top:72.70%;
+  width:14.8%
+}
+#rrate,#brate{
+  top:76.32%;
+  width:14.8%
+}
+#rtotaldiff,#rrate{left:9.2%}
+#btotaldiff,#brate{left:64.1%}
+
+/* 左側背景固定の「円お得」「%お得」を勝者側動的表示へ切替えるcoverも新位置へ */
+.metric-suffix-cover{
+  left:20.8%;
+  width:15.0%;
+  height:2.75%;
+}
+#totalSuffixCover{top:72.18%}
+#rateSuffixCover{top:75.82%}
+#rtotalSuffix{left:20.7%;top:72.70%;width:14.4%}
+#rrateSuffix{left:20.7%;top:76.32%;width:14.4%}
+#btotalSuffix{left:79.1%;top:72.70%;width:13.7%}
+#brateSuffix{left:79.1%;top:76.32%;width:13.7%}
 
 </style>
 </head>
