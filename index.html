@@ -585,6 +585,66 @@ select.unit{
   text-align:right !important;
 }
 
+
+/* =========================================================
+   Pass 23 — suffix right alignment + winner nudge
+   Display-only adjustments. No calculation / event changes.
+   ========================================================= */
+
+/* Winner label: move slightly up and right */
+#winner{
+  left:25.6% !important;
+  top:29.85% !important;
+  width:29.0% !important;
+}
+
+/* Left-side result suffixes:
+   - keep clear of the red value rectangles
+   - align their right edge with the upper unit column
+   - vertically center within each row */
+#rtotalSuffix,
+#rrateSuffix{
+  left:22.9% !important;
+  width:12.2% !important;
+  text-align:right !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:flex-end !important;
+  line-height:1 !important;
+}
+
+#rtotalSuffix{
+  top:71.95% !important;
+  height:3.00% !important;
+}
+
+#rrateSuffix{
+  top:75.58% !important;
+  height:3.00% !important;
+}
+
+/* Keep winner-side blue suffixes aligned if blue wins */
+#btotalSuffix,
+#brateSuffix{
+  left:80.0% !important;
+  width:12.2% !important;
+  text-align:right !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:flex-end !important;
+  line-height:1 !important;
+}
+
+#btotalSuffix{
+  top:71.95% !important;
+  height:3.00% !important;
+}
+
+#brateSuffix{
+  top:75.58% !important;
+  height:3.00% !important;
+}
+
 </style>
 </head>
 
