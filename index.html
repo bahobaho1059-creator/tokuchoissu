@@ -184,38 +184,81 @@ select.unit{
   pointer-events:none
 }
 
+/* FIX3-final alignment pass 1 */
 #winner{
-  left:20%;
-  top:25.3%;
-  width:53%;
-  font-size:clamp(22px,6vw,42px);
-  line-height:1.25
+  left:23%;
+  top:27.7%;
+  width:31%;
+  font-size:clamp(18px,5.0vw,34px);
+  line-height:1.15
 }
 
 #saving{
-  left:22%;
-  top:35.4%;
-  width:55%;
-  font-size:clamp(15px,4.4vw,30px)
+  left:17%;
+  top:37.15%;
+  width:43%;
+  font-size:clamp(13px,3.8vw,26px);
+  line-height:1.15
+}
+
+#rlabel,
+#blabel{
+  top:46.0%;
+  width:26%;
+  font-size:clamp(10px,2.7vw,18px);
+  color:#4c3b2e;
+  line-height:1.1
+}
+
+#rlabel{left:12.4%}
+#blabel{left:55.3%}
+
+#runit,
+#bunit{
+  top:49.45%;
+  width:21%;
+  font-size:clamp(20px,5.6vw,38px);
+  line-height:1.1
 }
 
 #runit{
-  left:10%;
-  top:49.7%;
-  width:34%;
-  font-size:clamp(20px,6vw,42px);
+  left:17.5%;
   color:#ef8376
 }
 
 #bunit{
-  left:56%;
-  top:49.7%;
-  width:34%;
-  font-size:clamp(20px,6vw,42px);
+  left:60.6%;
   color:#79b7df
 }
 
+.detail-value{
+  font-size:clamp(12px,3.4vw,23px);
+  color:#4c3b2e;
+  line-height:1.1
+}
+
+#rprice,#bprice{top:57.72%;width:14%}
+#rqty,#bqty{top:61.55%;width:14%}
+#rdetailunit,#bdetailunit{top:65.42%;width:14%}
+
+#rprice,#rqty,#rdetailunit{left:10.0%}
+#bprice,#bqty,#bdetailunit{left:65.0%}
+
+#detailUnitLabel{
+  left:34.0%;
+  top:65.35%;
+  width:25.0%;
+  font-size:clamp(9px,2.35vw,16px);
+  color:#4c3b2e;
+  line-height:1.1
+}
+
+/*
+  旧背景用coverはFIX3-finalでは不要。
+  要素/CSS定義自体は削除せず、影響確認のため無効化だけする。
+*/
 .cover{
+  display:none;
   position:absolute;
   background:#fffdf8;
   z-index:2;
@@ -335,8 +378,18 @@ select.unit{
   <div id="winner" class="dynamic"></div>
   <div id="saving" class="dynamic"></div>
 
+  <div id="rlabel" class="dynamic"></div>
+  <div id="blabel" class="dynamic"></div>
   <div id="runit" class="dynamic"></div>
   <div id="bunit" class="dynamic"></div>
+
+  <div id="rprice" class="dynamic detail-value"></div>
+  <div id="bprice" class="dynamic detail-value"></div>
+  <div id="rqty" class="dynamic detail-value"></div>
+  <div id="bqty" class="dynamic detail-value"></div>
+  <div id="rdetailunit" class="dynamic detail-value"></div>
+  <div id="bdetailunit" class="dynamic detail-value"></div>
+  <div id="detailUnitLabel" class="dynamic"></div>
 
   <button class="hit back-btn" aria-label="もどる"></button>
   <button class="hit edit-btn" aria-label="入力に戻って修正"></button>
@@ -379,6 +432,12 @@ screens.result.querySelector(".home-btn").onclick=()=>show("start");
 
 function n(id){
   return Number($(id).value);
+}
+
+function unitLabel(unit){
+  if(unit==="g") return "100gあたり";
+  if(unit==="ml") return "100mlあたり";
+  return "1個あたり";
 }
 
 function confetti(){
@@ -424,6 +483,7 @@ $(".compare-btn").onclick=()=>{
 
   const unit=$("#ru").value;
   const base=unit==="個" ? 1 : 100;
+  const label=unitLabel(unit);
 
   const r=rp/rq*base;
   const b=bp/bq*base;
@@ -433,11 +493,37 @@ $(".compare-btn").onclick=()=>{
 
   $("#winner").textContent = red ? "赤コーナー" : "青コーナー";
 
-  $("#saving").textContent=
-    `${base}${unit}あたり ${diff.toFixed(1)}円お得！`;
+  /*
+    FIX3-final側に「円お得！」が残っているため、
+    ここでは「比較単位 + 差額」だけを動的表示する。
+  */
+  $("#saving").textContent=`${label} ${diff.toFixed(1)}`;
 
-  $("#runit").textContent=r.toFixed(1)+"円";
-  $("#bunit").textContent=b.toFixed(1)+"円";
+  /*
+    カード上部の空欄は、背景から削除済みの
+    「100g/100ml/1個あたりの単価」を動的に戻す領域。
+  */
+  $("#rlabel").textContent=`${label}の単価`;
+  $("#blabel").textContent=`${label}の単価`;
+
+  /*
+    カード下部は背景に「円」が固定で残っているため、
+    数字だけを表示する。
+  */
+  $("#runit").textContent=r.toFixed(1);
+  $("#bunit").textContent=b.toFixed(1);
+
+  /*
+    くわしい比較：価格・内容量・比較単価。
+    背景側に円 / g/ml/個が残っているため数字だけ入れる。
+  */
+  $("#rprice").textContent=rp.toLocaleString();
+  $("#bprice").textContent=bp.toLocaleString();
+  $("#rqty").textContent=rq.toLocaleString();
+  $("#bqty").textContent=bq.toLocaleString();
+  $("#rdetailunit").textContent=r.toFixed(1);
+  $("#bdetailunit").textContent=b.toFixed(1);
+  $("#detailUnitLabel").textContent=`${label}の単価`;
 
   show("result");
   confetti();
