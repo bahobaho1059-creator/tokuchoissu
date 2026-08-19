@@ -463,6 +463,22 @@ select.unit{
   box-shadow:none !important;
 }
 
+/* Pass 15: 中央カードはFIX③の背景UIをそのまま使用。
+   HTMLで補完していた単価ラベルは表示せず、動的数値だけを背景の既存矩形へ載せる。 */
+#rlabel,
+#blabel{
+  display:none !important;
+}
+
+#runit,
+#bunit{
+  top:46.72%;
+  background:transparent !important;
+  border:none !important;
+  outline:none !important;
+  box-shadow:none !important;
+}
+
 </style>
 </head>
 
