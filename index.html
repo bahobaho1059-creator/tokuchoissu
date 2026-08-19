@@ -184,7 +184,7 @@ select.unit{
   pointer-events:none
 }
 
-/* FIX3-final alignment pass 10 — Fx動作保証版から表示のみ修正 */
+/* FIX3-final alignment pass 16 — Fx動作保証版を維持し中央カードのみ訂正 */
 #winner{
   left:22.2%;
   top:27.45%;
@@ -245,25 +245,6 @@ select.unit{
   color:#79b7df
 }
 
-
-#rlabel,
-#blabel{
-  top:46.02%;
-  width:26.0%;
-  font-size:clamp(9px,2.15vw,15px);
-  line-height:1.05;
-  white-space:nowrap
-}
-
-#rlabel{
-  left:12.2%;
-  color:#e53935
-}
-
-#blabel{
-  left:55.4%;
-  color:#168fe8
-}
 
 
 
@@ -392,19 +373,6 @@ select.unit{
   border-radius:20px
 }
 
-#rcover{
-  left:10%;
-  top:48%;
-  width:34%;
-  height:7%
-}
-
-#bcover{
-  left:56%;
-  top:48%;
-  width:34%;
-  height:7%
-}
 
 .confetti{
   position:fixed;
@@ -463,16 +431,12 @@ select.unit{
   box-shadow:none !important;
 }
 
-/* Pass 15: 中央カードはFIX③の背景UIをそのまま使用。
-   HTMLで補完していた単価ラベルは表示せず、動的数値だけを背景の既存矩形へ載せる。 */
-#rlabel,
-#blabel{
-  display:none !important;
-}
-
+/* Pass 16: 中央カード訂正FIX。
+   HTML製ラベル・中央カード用coverを完全撤去し、FIX③の背景UIを露出。
+   動的表示は単価数値のみ。数値はFIX③既存の薄色矩形中央へ配置する。 */
 #runit,
 #bunit{
-  top:46.72%;
+  top:49.22%;
   background:transparent !important;
   border:none !important;
   outline:none !important;
@@ -517,16 +481,12 @@ select.unit{
 <section id="result" class="screen">
 
   <div id="wincover" class="cover"></div>
-  <div id="rcover" class="cover"></div>
-  <div id="bcover" class="cover"></div>
 
   <div id="winnerFrame"></div>
   <div id="winner" class="dynamic"></div>
   <div id="savingLabel" class="dynamic"></div>
   <div id="saving" class="dynamic"></div>
 
-  <div id="rlabel" class="dynamic"></div>
-  <div id="blabel" class="dynamic"></div>
   <div id="runit" class="dynamic"></div>
   <div id="bunit" class="dynamic"></div>
 
@@ -660,8 +620,6 @@ $(".compare-btn").onclick=()=>{
   $("#winner").style.color = red ? "#e53935" : "#168fe8";
   $("#winnerFrame").style.borderColor = red ? "#e53935" : "#168fe8";
 
-  $("#rlabel").textContent=`${label}の単価`;
-  $("#blabel").textContent=`${label}の単価`;
   $("#detailUnitLabel").textContent=`${label}の単価`;
 
   /*
