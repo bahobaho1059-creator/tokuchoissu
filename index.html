@@ -328,31 +328,6 @@ select.unit{
   勝者側へ動的に出すため、その固定文字だけ白で隠し、
   HTML側から左右どちらにも出せるようにする。
 */
-.metric-suffix-cover{
-  position:absolute;
-  left:21.2%;
-  width:14.2%;
-  height:2.55%;
-  background:#fffdf8;
-  z-index:2;
-  pointer-events:none
-}
-
-#totalSuffixCover{top:68.92%}
-#rateSuffixCover{top:72.78%}
-
-.metric-suffix{
-  font-size:clamp(10px,2.6vw,18px);
-  color:#4c3b2e;
-  line-height:1.08;
-  white-space:nowrap
-}
-
-#rtotalSuffix{left:21.0%;top:69.30%;width:13.8%}
-#rrateSuffix{left:21.0%;top:73.14%;width:13.8%}
-#btotalSuffix{left:79.5%;top:69.30%;width:13.0%}
-#brateSuffix{left:79.5%;top:73.14%;width:13.0%}
-
 /*
   旧背景用coverはFIX3-finalでは不要。
   要素/CSS定義自体は削除せず、影響確認のため無効化だけする。
@@ -533,118 +508,13 @@ select.unit{
 #rrate{left:9.7% !important}
 #brate{left:64.1% !important}
 
-/* 左側背景に固定された「円お得」「%お得」を隠し、
-   勝者側だけ動的suffixを出す。 */
-#totalSuffixCover{
-  left:20.8% !important;
-  top:71.92% !important;
-  width:15.3% !important;
-  height:2.50% !important;
-}
-#rateSuffixCover{
-  left:20.8% !important;
-  top:75.55% !important;
-  width:15.3% !important;
-  height:2.50% !important;
-}
-
-#rtotalSuffix{
-  left:20.7% !important;
-  top:72.28% !important;
-  width:14.4% !important;
-}
-#btotalSuffix{
-  left:79.2% !important;
-  top:72.28% !important;
-  width:13.5% !important;
-}
-#rrateSuffix{
-  left:20.7% !important;
-  top:75.92% !important;
-  width:14.4% !important;
-}
-#brateSuffix{
-  left:79.2% !important;
-  top:75.92% !important;
-  width:13.5% !important;
-}
-
 /* =========================================================
    Pass 22 — 中央カード整数表示＋下段suffix右端整列
    黄色帯・計算ロジック・下段数値位置はPass 21を維持。
    ========================================================= */
 /* 上段の単位文字と同じ右端ラインへ「円お得」「%お得」を揃える */
-#rtotalSuffix,#rrateSuffix{
-  left:20.7% !important;
-  width:14.4% !important;
-  text-align:right !important;
-}
-#btotalSuffix,#brateSuffix{
-  left:78.9% !important;
-  width:13.5% !important;
-  text-align:right !important;
-}
 
-
-/* =========================================================
-   Pass 23 — suffix right alignment + winner nudge
-   Display-only adjustments. No calculation / event changes.
-   ========================================================= */
-
-/* Winner label: move slightly up and right */
-#winner{
-  left:25.6% !important;
-  top:29.85% !important;
-  width:29.0% !important;
-}
-
-/* Left-side result suffixes:
-   - keep clear of the red value rectangles
-   - align their right edge with the upper unit column
-   - vertically center within each row */
-#rtotalSuffix,
-#rrateSuffix{
-  left:22.9% !important;
-  width:12.2% !important;
-  text-align:right !important;
-  display:flex !important;
-  align-items:center !important;
-  justify-content:flex-end !important;
-  line-height:1 !important;
-}
-
-#rtotalSuffix{
-  top:71.95% !important;
-  height:3.00% !important;
-}
-
-#rrateSuffix{
-  top:75.58% !important;
-  height:3.00% !important;
-}
-
-/* Keep winner-side blue suffixes aligned if blue wins */
-#btotalSuffix,
-#brateSuffix{
-  left:80.0% !important;
-  width:12.2% !important;
-  text-align:right !important;
-  display:flex !important;
-  align-items:center !important;
-  justify-content:flex-end !important;
-  line-height:1 !important;
-}
-
-#btotalSuffix{
-  top:71.95% !important;
-  height:3.00% !important;
-}
-
-#brateSuffix{
-  top:75.58% !important;
-  height:3.00% !important;
-}
-
+/* Pass 23: 「円お得」「%お得」はFIX③背景の静的文字を使用。HTML側は数値のみ。 */
 </style>
 </head>
 
@@ -704,21 +574,11 @@ select.unit{
   <div id="bqty" class="dynamic detail-value"></div>
   <div id="rdetailunit" class="dynamic detail-value"></div>
   <div id="bdetailunit" class="dynamic detail-value"></div>
-
-  <div id="totalSuffixCover" class="metric-suffix-cover"></div>
-  <div id="rateSuffixCover" class="metric-suffix-cover"></div>
-
-  <div id="rtotaldiff" class="dynamic result-metric"></div>
+<div id="rtotaldiff" class="dynamic result-metric"></div>
   <div id="btotaldiff" class="dynamic result-metric"></div>
   <div id="rrate" class="dynamic result-metric"></div>
   <div id="brate" class="dynamic result-metric"></div>
-
-  <div id="rtotalSuffix" class="dynamic metric-suffix"></div>
-  <div id="btotalSuffix" class="dynamic metric-suffix"></div>
-  <div id="rrateSuffix" class="dynamic metric-suffix"></div>
-  <div id="brateSuffix" class="dynamic metric-suffix"></div>
-
-  <button class="hit back-btn" aria-label="もどる"></button>
+<button class="hit back-btn" aria-label="もどる"></button>
   <button class="hit edit-btn" aria-label="入力に戻って修正"></button>
   <button class="hit again-btn" aria-label="もう一度比較する"></button>
   <button class="hit home-btn" aria-label="ホーム"></button>
@@ -880,13 +740,7 @@ $(".compare-btn").onclick=()=>{
   $("#btotaldiff").textContent=red ? "" : totalText;
   $("#rrate").textContent=red ? rateText : "";
   $("#brate").textContent=red ? "" : rateText;
-
-  $("#rtotalSuffix").textContent=red ? "円お得" : "";
-  $("#btotalSuffix").textContent=red ? "" : "円お得";
-  $("#rrateSuffix").textContent=red ? "%お得" : "";
-  $("#brateSuffix").textContent=red ? "" : "%お得";
-
-  show("result");
+show("result");
   confetti();
 };
 </script>
