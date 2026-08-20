@@ -52,7 +52,7 @@ body{
 
 #result{
   display:none;
-  background-image:url("assets/FIX3-final.PNG?v=20260820-pass28");
+  background-image:url("assets/FIX3-final.PNG?v=20260820-pass31");
   aspect-ratio:711/1536
 }
 
@@ -185,7 +185,6 @@ select.unit{
 }
 
 /* FIX3-final alignment pass 16 — Fx動作保証版を維持し中央カードのみ訂正 */
-
 
 
 #winnerFrame{
@@ -404,7 +403,6 @@ select.unit{
 
 /* 上段：勝者名 */
 
-
 /* 黄色帯：差額数値だけを中央へ */
 #saving{
   left:46.6% !important;
@@ -540,21 +538,27 @@ select.unit{
   display:none;
 }
 
-/* Pass 30 — #winner position only; Pass 29 discarded */
- #winner{
+/* =========================================================
+   Pass 31 — winner coordinate basis FIX
+   #winner is now a CHILD of #winnerFrame.
+   Therefore left/top are relative to the white result-card frame,
+   not to the entire #result screen.
+   Only one #winner positioning rule exists.
+   ========================================================= */
+#winner{
   position:absolute;
-  left:27.6% !important;
-  top:28.3% !important;
-  width:29.5%;
+  left:23.7705%;
+  top:28.4457%;
+  width:34.5433%;
   font-size:clamp(20px,5.15vw,34px);
   font-weight:800;
   line-height:1.04;
   white-space:nowrap;
   margin:0;
   padding:0;
+  text-align:center;
+  pointer-events:none;
 }
-  
-
 </style>
 </head>
 
@@ -594,8 +598,9 @@ select.unit{
 
   <div id="wincover" class="cover"></div>
 
-  <div id="winnerFrame"></div>
-  <div id="winner" class="dynamic"></div>
+  <div id="winnerFrame">
+    <div id="winner" class="dynamic"></div>
+  </div>
   <div id="savingLabel" class="dynamic"></div>
   <div id="saving" class="dynamic"></div>
 
