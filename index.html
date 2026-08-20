@@ -694,12 +694,12 @@ select.unit{
 }
 
 #inputGuideSub{
-  left:63.0%;
+  left:61.5%;
   top:72.42%;
-  width:27.5%;
+  width:30.5%;
   height:3.4%;
   color:#79ad50;
-  font-size:clamp(11px,2.85vw,19px);
+  font-size:clamp(9px,2.35vw,16px);
   font-weight:700;
 }
 
@@ -725,7 +725,9 @@ select.unit{
 
   <select id="ru" class="unit" aria-label="赤コーナー単位">
     <option>g</option>
+    <option>kg</option>
     <option>ml</option>
+    <option>L</option>
     <option>個</option>
   </select>
 
@@ -734,14 +736,16 @@ select.unit{
 
   <select id="bu" class="unit" aria-label="青コーナー単位">
     <option>g</option>
+    <option>kg</option>
     <option>ml</option>
+    <option>L</option>
     <option>個</option>
   </select>
 
   <div id="inputGuideOldLeft" aria-hidden="true"></div>
   <div id="inputGuideOldRight" aria-hidden="true"></div>
   <div id="inputGuideMain" aria-hidden="true">単位は各商品の右側で選べます</div>
-  <div id="inputGuideSub" aria-hidden="true">g・ml・個に対応</div>
+  <div id="inputGuideSub" aria-hidden="true">g・kg・ml・L・個に対応</div>
 
   <button class="hit compare-btn" aria-label="比較する"></button>
   <button class="hit home-btn" aria-label="ホーム"></button>
@@ -820,9 +824,22 @@ function n(id){
   return Number($(id).value);
 }
 
+function unitType(unit){
+  if(unit==="g" || unit==="kg") return "weight";
+  if(unit==="ml" || unit==="L") return "volume";
+  return "count";
+}
+
+function unitFactor(unit){
+  if(unit==="kg") return 1000;
+  if(unit==="L") return 1000;
+  return 1;
+}
+
 function unitLabel(unit){
-  if(unit==="g") return "100gあたり";
-  if(unit==="ml") return "100mlあたり";
+  const type=unitType(unit);
+  if(type==="weight") return "100gあたり";
+  if(type==="volume") return "100mlあたり";
   return "1個あたり";
 }
 
@@ -862,17 +879,23 @@ $(".compare-btn").onclick=()=>{
     return;
   }
 
-  if($("#ru").value!==$("#bu").value){
-    alert("同じ単位（g同士 / ml同士 / 個同士）で比較してください");
+  const ru=$("#ru").value;
+  const bu=$("#bu").value;
+
+  if(unitType(ru)!==unitType(bu)){
+    alert("同じ種類の単位で比較してください（g・kg / ml・L / 個）");
     return;
   }
 
-  const unit=$("#ru").value;
-  const base=unit==="個" ? 1 : 100;
+  const rqBase=rq*unitFactor(ru);
+  const bqBase=bq*unitFactor(bu);
+
+  const unit=ru;
+  const base=unitType(unit)==="count" ? 1 : 100;
   const label=unitLabel(unit);
 
-  const r=rp/rq*base;
-  const b=bp/bq*base;
+  const r=rp/rqBase*base;
+  const b=bp/bqBase*base;
 
   const red=r<=b;
   const diff=Math.abs(r-b);
@@ -906,8 +929,8 @@ $(".compare-btn").onclick=()=>{
   */
   $("#rprice").textContent=rp.toLocaleString();
   $("#bprice").textContent=bp.toLocaleString();
-  $("#rqty").textContent=rq.toLocaleString();
-  $("#bqty").textContent=bq.toLocaleString();
+  $("#rqty").textContent=rqBase.toLocaleString("ja-JP");
+  $("#bqty").textContent=bqBase.toLocaleString("ja-JP");
   $("#rdetailunit").textContent=r.toFixed(1);
   $("#bdetailunit").textContent=b.toFixed(1);
 
@@ -918,7 +941,7 @@ $(".compare-btn").onclick=()=>{
     例: 50g/280円 vs 70g/350円
         70gにそろえると 392円 vs 350円 → 42円差。
   */
-  const commonQty=Math.max(rq,bq);
+  const commonQty=Math.max(rqBase,bqBase);
   const redAtCommon=(r/base)*commonQty;
   const blueAtCommon=(b/base)*commonQty;
   const totalDiff=Math.abs(redAtCommon-blueAtCommon);
