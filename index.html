@@ -552,15 +552,38 @@ select.unit{
 
 /* losing側に見える不要なダッシュだけを隠す。
    赤の薄色矩形・中央ラベル・罫線には触れない。 */
-#loserDashCover{
-  position:absolute;
-  left:31.6%;
-  top:72.18%;
-  width:5.0%;
-  height:1.85%;
-  background:#fbfaf6;
-  z-index:2;
-  pointer-events:none;
+
+/* =========================================================
+   Pass 25 — 下段数値の視覚中央化 + 負け側の下2段完全非表示
+   上段結果 / 中央カード / 黄色帯 / 計算ロジックは変更しない。
+   ========================================================= */
+
+/* 価格・内容量・単価：薄色矩形の視覚中央へ少し上げる */
+#rprice,#bprice{
+  top:60.98% !important;
+}
+#rqty,#bqty{
+  top:64.63% !important;
+}
+#rdetailunit,#bdetailunit{
+  top:68.20% !important;
+}
+
+/* 下2段も矩形の視覚中央へ */
+#rtotaldiff,#btotaldiff{
+  top:71.70% !important;
+}
+#rrate,#brate{
+  top:75.33% !important;
+}
+
+/* 勝者側だけ表示。負け側は数値をDOM上で空にする既存JSを尊重し、
+   見た目上も何も出ないよう固定背景の単位だけ残す。 */
+#rtotaldiff:empty,
+#btotaldiff:empty,
+#rrate:empty,
+#brate:empty{
+  display:none !important;
 }
 
 </style>
@@ -614,8 +637,7 @@ select.unit{
   <div id="sameQtyLabelCover" class="detail-center-cover"></div>
 
   <div id="sameQtyLabel" class="dynamic detail-center-label">同じ量なら</div>
-  <div id="loserDashCover" aria-hidden="true"></div>
-  <div id="detailUnitLabel" class="dynamic"></div>
+<div id="detailUnitLabel" class="dynamic"></div>
 
   <div id="rprice" class="dynamic detail-value"></div>
   <div id="bprice" class="dynamic detail-value"></div>
