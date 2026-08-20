@@ -185,15 +185,7 @@ select.unit{
 }
 
 /* FIX3-final alignment pass 16 — Fx動作保証版を維持し中央カードのみ訂正 */
-#winner{
-  left:22.2%;
-  top:27.45%;
-  width:30.8%;
-  font-size:clamp(20px,5.4vw,35px);
-  font-weight:800;
-  line-height:1.06;
-  white-space:nowrap
-}
+
 
 
 #winnerFrame{
@@ -411,13 +403,7 @@ select.unit{
 }
 
 /* 上段：勝者名 */
-#winner{
-  left:24.0% !important;
-  top:30.55% !important;
-  width:29.5% !important;
-  font-size:clamp(20px,5.15vw,34px) !important;
-  line-height:1.04 !important;
-}
+
 
 /* 黄色帯：差額数値だけを中央へ */
 #saving{
@@ -554,18 +540,11 @@ select.unit{
   display:none;
 }
 
-/* =========================================================
-   Pass 29 — 上段勝者名の位置だけ修正
-   Screenshot measurement:
-   current center = (560.5, 1275.0) px
-   target center  = (627.5, 1214.5) px
-   delta          = X +67.0px / Y -60.5px
-   Only #winner position is changed.
-   ========================================================= */
+/* Pass 30 — #winner position only; Pass 29 discarded */
 #winner{
   position:absolute;
-  left:27.96919%;
-  top:28.89094%;
+  left:27.97%;
+  top:23.30%;
   width:29.5%;
   font-size:clamp(20px,5.15vw,34px);
   font-weight:800;
