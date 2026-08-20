@@ -620,6 +620,18 @@ select.unit{
   opacity:1 !important;
 }
 
+
+/* =========================================================
+   DEBUG ONLY — startBrandLogo visibility check
+   赤枠が出る → DOM/CSSは描画されている。画像読み込み側を疑う。
+   赤枠すら出ない → 公開ページがこのHTMLを読んでいない可能性が高い。
+   ========================================================= */
+#startBrandLogo{
+  outline:6px solid #ff0000 !important;
+  outline-offset:0 !important;
+  background:rgba(255,255,0,.35) !important;
+}
+
 </style>
 <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@900&display=swap" rel="stylesheet">
 </head>
@@ -629,7 +641,7 @@ select.unit{
 
 <section id="start" class="screen">
   <div id="startLogoMask" aria-hidden="true"></div>
-  <img id="startBrandLogo" src="assets/tokuchoiss-logo.png?v=20260821-logo-final1" alt="得チョイっす。 チョイっと比較、得するチョイス。">
+  <img id="startBrandLogo" src="assets/tokuchoiss-logo.png?v=20260821-debug1" alt="得チョイっす。 チョイっと比較、得するチョイス。">
   <button class="hit start-btn" aria-label="はじめる"></button>
 </section>
 
