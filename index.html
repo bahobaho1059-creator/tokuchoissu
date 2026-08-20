@@ -52,7 +52,7 @@ body{
 
 #result{
   display:none;
-  background-image:url("assets/FIX3-final.PNG?v=20260820-pass18");
+  background-image:url("assets/FIX3-final.PNG?v=20260820-pass28");
   aspect-ratio:711/1536
 }
 
@@ -295,13 +295,6 @@ select.unit{
   box-shadow:none !important
 }
 
-#rprice,#bprice{top:57.72%;width:14%}
-#rqty,#bqty{top:61.55%;width:14%}
-#rdetailunit,#bdetailunit{top:65.42%;width:14%}
-
-#rprice,#rqty,#rdetailunit{left:10.0%}
-#bprice,#bqty,#bdetailunit{left:65.0%}
-
 
 /* 総額差・お得率 */
 .result-metric{
@@ -309,19 +302,6 @@ select.unit{
   color:#4c3b2e;
   line-height:1.08
 }
-
-#rtotaldiff,#btotaldiff{
-  top:69.30%;
-  width:13.3%
-}
-
-#rrate,#brate{
-  top:73.14%;
-  width:13.3%
-}
-
-#rtotaldiff,#rrate{left:10.2%}
-#btotaldiff,#brate{left:65.4%}
 
 /*
   FIX3-finalには左側だけ「円お得」「%お得」が固定で残っている。
@@ -460,22 +440,6 @@ select.unit{
 #runit{left:14.6% !important}
 #bunit{left:58.7% !important}
 
-/* 下段：FIX③の5行の矩形位置へ動的数値を再配置 */
-#rprice,#bprice{
-  top:61.25% !important;
-  width:15.5% !important;
-}
-#rqty,#bqty{
-  top:64.90% !important;
-  width:15.5% !important;
-}
-#rdetailunit,#bdetailunit{
-  top:68.48% !important;
-  width:15.5% !important;
-}
-#rprice,#rqty,#rdetailunit{left:9.8% !important}
-#bprice,#bqty,#bdetailunit{left:64.2% !important}
-
 /* 正式変更：「総額差」→「同じ量なら」 */
 #sameQtyLabelCover{
   left:37.0% !important;
@@ -492,280 +456,103 @@ select.unit{
   line-height:1.02 !important;
 }
 
-/* 「同じ量なら」値 */
-#rtotaldiff,#btotaldiff{
-  top:72.28% !important;
-  width:14.8% !important;
-}
-#rtotaldiff{left:9.7% !important}
-#btotaldiff{left:64.1% !important}
-
-/* お得率 */
-#rrate,#brate{
-  top:75.92% !important;
-  width:14.8% !important;
-}
-#rrate{left:9.7% !important}
-#brate{left:64.1% !important}
 
 /* =========================================================
-   Pass 22 — 中央カード整数表示＋下段suffix右端整列
-   黄色帯・計算ロジック・下段数値位置はPass 21を維持。
-   ========================================================= */
-/* 上段の単位文字と同じ右端ラインへ「円お得」「%お得」を揃える */
-
-/* Pass 23: 「円お得」「%お得」はFIX③背景の静的文字を使用。HTML側は数値のみ。 */
-
-/* =========================================================
-   Pass 24 — 下段結果値の枠内センター調整
-   ・FIX③背景の「円お得」「%お得」は静的表示のまま
-   ・動的な数値だけを薄色矩形の中央へ配置
-   ・右側数値は静的単位と干渉しないよう矩形内で完結
-   ・左側に見える不要な「—」のみ局所的に隠す
+   Pass 28 — current FIX3-final measured rectangle mapping
+   Source image geometry used for measurement: 719 × 1536
+   #result remains 711/1536; Y values below include scale compensation.
+   Historical positioning rules for these 10 IDs were removed.
+   Each DOM box equals its corresponding colored rectangle and centers
+   the numeric text with flex in both axes.
    ========================================================= */
 
-#rtotaldiff,#btotaldiff,
-#rrate,#brate{
-  display:flex !important;
-  align-items:center !important;
-  justify-content:center !important;
-  text-align:center !important;
-  padding:0 !important;
-  line-height:1 !important;
-  width:14.2% !important;
-  height:2.55% !important;
-}
-
-/* 「同じ量なら」行 */
-#rtotaldiff,#btotaldiff{
-  top:71.95% !important;
-}
-
-/* 「お得率」行 */
-#rrate,#brate{
-  top:75.58% !important;
-}
-
-/* 左右とも薄色矩形の中央に固定 */
-#rtotaldiff,#rrate{left:9.9% !important}
-#btotaldiff,#brate{left:64.35% !important}
-
-/* losing側に見える不要なダッシュだけを隠す。
-   赤の薄色矩形・中央ラベル・罫線には触れない。 */
-
-/* =========================================================
-   Pass 25 — 下段数値の視覚中央化 + 負け側の下2段完全非表示
-   上段結果 / 中央カード / 黄色帯 / 計算ロジックは変更しない。
-   ========================================================= */
-
-/* 価格・内容量・単価：薄色矩形の視覚中央へ少し上げる */
-#rprice,#bprice{
-  top:60.98% !important;
-}
-#rqty,#bqty{
-  top:64.63% !important;
-}
-#rdetailunit,#bdetailunit{
-  top:68.20% !important;
-}
-
-/* 下2段も矩形の視覚中央へ */
-#rtotaldiff,#btotaldiff{
-  top:71.70% !important;
-}
-#rrate,#brate{
-  top:75.33% !important;
-}
-
-/* 勝者側だけ表示。負け側は数値をDOM上で空にする既存JSを尊重し、
-   見た目上も何も出ないよう固定背景の単位だけ残す。 */
-#rtotaldiff:empty,
-#btotaldiff:empty,
-#rrate:empty,
-#brate:empty{
-  display:none !important;
-}
-
-
-/* =========================================================
-   Pass 26 — 「くわしい比較」5矩形の完全センター再設計
-   新FIX③ (711×1536) の実矩形中心を基準に配置。
-   勝者側：5数値 / 負け側：3数値。
-   各数値は各薄赤・薄青矩形の上下左右センターに固定する。
-   ========================================================= */
-
-/* 共通：矩形の中心座標そのものを基準にする */
-#rprice,#bprice,
-#rqty,#bqty,
-#rdetailunit,#bdetailunit,
-#rtotaldiff,#btotaldiff,
-#rrate,#brate{
-  position:absolute !important;
-  width:15.5% !important;
-  height:3.05% !important;
-  margin:0 !important;
-  padding:0 !important;
-  display:flex !important;
-  align-items:center !important;
-  justify-content:center !important;
-  text-align:center !important;
-  line-height:1 !important;
-  transform:translate(-50%,-50%) !important;
-  box-sizing:border-box !important;
-}
-
-/* FIX③の薄赤矩形・薄青矩形の水平中心 */
-#rprice,#rqty,#rdetailunit,#rtotaldiff,#rrate{
-  left:17.35% !important;
-}
+#rprice,#rqty,#rdetailunit,#rtotaldiff,#rrate,
 #bprice,#bqty,#bdetailunit,#btotaldiff,#brate{
-  left:71.20% !important;
+  position:absolute;
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  transform:none;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  line-height:1;
 }
-
-/* 5つの矩形の垂直中心（FIX③実画像から算出） */
-#rprice,#bprice{
-  top:62.11% !important;
-}
-#rqty,#bqty{
-  top:65.72% !important;
-}
-#rdetailunit,#bdetailunit{
-  top:69.34% !important;
-}
-#rtotaldiff,#btotaldiff{
-  top:73.24% !important;
-}
-#rrate,#brate{
-  top:77.25% !important;
-}
-
-/* 負け側の4・5段目は既存JSで空文字。
-   空の場合は完全非表示にし、勝者5個／負け側3個を保証する。 */
-#rtotaldiff:empty,
-#btotaldiff:empty,
-#rrate:empty,
-#brate:empty{
-  display:none !important;
-}
-
-
-/* =========================================================
-   Pass 27 — FIX③実画像測定ベース 10矩形完全マッピング
-   基準画像: assets/FIX3-final.PNG = 711 × 1536 px
-
-   原則:
-   1) 数値表示DOMの領域 = 背景の薄赤/薄青矩形そのもの
-   2) 推測中心座標・translate方式は禁止
-   3) 各矩形領域内で flex により上下左右中央
-   4) 勝者側5数値 / 負け側3数値
-   ========================================================= */
-
-#rprice,#bprice,
-#rqty,#bqty,
-#rdetailunit,#bdetailunit,
-#rtotaldiff,#btotaldiff,
-#rrate,#brate{
-  position:absolute !important;
-  transform:none !important;
-  margin:0 !important;
-  padding:0 !important;
-  box-sizing:border-box !important;
-  display:flex !important;
-  align-items:center !important;
-  justify-content:center !important;
-  text-align:center !important;
-  line-height:1 !important;
-}
-
 
 #rprice{
-  left:9.70464% !important;
-  top:60.87240% !important;
-  width:16.31505% !important;
-  height:2.53906% !important;
+  left:9.17942%;
+  top:62.25534%;
+  width:15.43811%;
+  height:3.09020%;
 }
-
 
 #rqty{
-  left:9.70464% !important;
-  top:64.32292% !important;
-  width:15.33052% !important;
-  height:2.86458% !important;
+  left:9.17942%;
+  top:66.50430%;
+  width:15.29903%;
+  height:3.09020%;
 }
-
 
 #rdetailunit{
-  left:9.70464% !important;
-  top:67.83854% !important;
-  width:15.33052% !important;
-  height:2.99479% !important;
+  left:9.17942%;
+  top:70.68896%;
+  width:15.29903%;
+  height:3.09020%;
 }
-
 
 #rtotaldiff{
-  left:9.70464% !important;
-  top:71.80990% !important;
-  width:15.18987% !important;
-  height:2.79948% !important;
+  left:9.17942%;
+  top:75.00243%;
+  width:15.29903%;
+  height:3.02582%;
 }
-
 
 #rrate{
-  left:9.70464% !important;
-  top:75.84635% !important;
-  width:15.18987% !important;
-  height:2.86458% !important;
+  left:9.17942%;
+  top:79.12279%;
+  width:15.29903%;
+  height:3.15458%;
 }
-
 
 #bprice{
-  left:63.43179% !important;
-  top:60.87240% !important;
-  width:16.45570% !important;
-  height:2.53906% !important;
+  left:63.69958%;
+  top:62.25534%;
+  width:15.15994%;
+  height:3.09020%;
 }
-
 
 #bqty{
-  left:63.43179% !important;
-  top:64.32292% !important;
-  width:15.47117% !important;
-  height:2.79948% !important;
+  left:63.69958%;
+  top:66.50430%;
+  width:15.15994%;
+  height:3.09020%;
 }
-
 
 #bdetailunit{
-  left:63.43179% !important;
-  top:67.96875% !important;
-  width:15.61181% !important;
-  height:2.73438% !important;
+  left:63.69958%;
+  top:70.68896%;
+  width:15.15994%;
+  height:3.09020%;
 }
-
 
 #btotaldiff{
-  left:63.43179% !important;
-  top:71.87500% !important;
-  width:15.47117% !important;
-  height:2.73438% !important;
+  left:63.69958%;
+  top:75.00243%;
+  width:15.15994%;
+  height:3.02582%;
 }
-
 
 #brate{
-  left:63.57243% !important;
-  top:75.91146% !important;
-  width:15.33052% !important;
-  height:2.79948% !important;
+  left:63.69958%;
+  top:79.18716%;
+  width:15.15994%;
+  height:3.09020%;
 }
 
-
-/* 負け側4・5段目は既存JSの空文字をそのまま尊重 */
-#rtotaldiff:empty,
-#btotaldiff:empty,
-#rrate:empty,
-#brate:empty{
-  display:none !important;
+#rtotaldiff:empty,#btotaldiff:empty,#rrate:empty,#brate:empty{
+  display:none;
 }
-
 </style>
 </head>
 
