@@ -65,7 +65,7 @@ body{
 }
 
 .start-btn{
-  z-index:60;
+  z-index:10;
   left:26%;
   top:53.6%;
   width:48%;
@@ -590,8 +590,11 @@ select.unit{
 }
 
 /* =========================================================
-   Start logo overlay — 原本α / ①正式ロゴ表示FIX
-   711×1536基準。①だけに作用。
+   Start logo overlay — 原本α
+   711×1536基準:
+   mask: old logo/subtitle safe area
+   logo: x=106, y=603, w=500, h=201
+   Only #start is affected.
    ========================================================= */
 #startLogoMask{
   position:absolute;
@@ -599,9 +602,9 @@ select.unit{
   top:40.23438%;
   width:56.54008%;
   height:12.69531%;
-  border-radius:24px;
+  border-radius:3.37553%;
   background:#fffbed;
-  z-index:40;
+  z-index:4;
   pointer-events:none;
 }
 
@@ -611,25 +614,11 @@ select.unit{
   top:39.25781%;
   width:70.32349%;
   height:auto;
-  z-index:50;
+  z-index:5;
   pointer-events:none;
   user-select:none;
   -webkit-user-drag:none;
-  display:block !important;
-  visibility:visible !important;
-  opacity:1 !important;
-}
-
-
-/* =========================================================
-   DEBUG ONLY — startBrandLogo visibility check
-   赤枠が出る → DOM/CSSは描画されている。画像読み込み側を疑う。
-   赤枠すら出ない → 公開ページがこのHTMLを読んでいない可能性が高い。
-   ========================================================= */
-#startBrandLogo{
-  outline:6px solid #ff0000 !important;
-  outline-offset:0 !important;
-  background:rgba(255,255,0,.35) !important;
+  display:block;
 }
 
 </style>
@@ -641,7 +630,7 @@ select.unit{
 
 <section id="start" class="screen">
   <div id="startLogoMask" aria-hidden="true"></div>
-  <img id="startBrandLogo" src="assets/tokuchoiss-logo.png?v=20260821-debug1" alt="得チョイっす。 チョイっと比較、得するチョイス。">
+  <img id="startBrandLogo" src="assets/tokuchoiss-logo.png?v=20260821-reuse-success1" alt="得チョイっす。 チョイっと比較、得するチョイス。">
   <button class="hit start-btn" aria-label="はじめる"></button>
 </section>
 
