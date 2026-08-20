@@ -648,6 +648,124 @@ select.unit{
   display:none !important;
 }
 
+
+/* =========================================================
+   Pass 27 — FIX③実画像測定ベース 10矩形完全マッピング
+   基準画像: assets/FIX3-final.PNG = 711 × 1536 px
+
+   原則:
+   1) 数値表示DOMの領域 = 背景の薄赤/薄青矩形そのもの
+   2) 推測中心座標・translate方式は禁止
+   3) 各矩形領域内で flex により上下左右中央
+   4) 勝者側5数値 / 負け側3数値
+   ========================================================= */
+
+#rprice,#bprice,
+#rqty,#bqty,
+#rdetailunit,#bdetailunit,
+#rtotaldiff,#btotaldiff,
+#rrate,#brate{
+  position:absolute !important;
+  transform:none !important;
+  margin:0 !important;
+  padding:0 !important;
+  box-sizing:border-box !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  text-align:center !important;
+  line-height:1 !important;
+}
+
+
+#rprice{
+  left:9.70464% !important;
+  top:60.87240% !important;
+  width:16.31505% !important;
+  height:2.53906% !important;
+}
+
+
+#rqty{
+  left:9.70464% !important;
+  top:64.32292% !important;
+  width:15.33052% !important;
+  height:2.86458% !important;
+}
+
+
+#rdetailunit{
+  left:9.70464% !important;
+  top:67.83854% !important;
+  width:15.33052% !important;
+  height:2.99479% !important;
+}
+
+
+#rtotaldiff{
+  left:9.70464% !important;
+  top:71.80990% !important;
+  width:15.18987% !important;
+  height:2.79948% !important;
+}
+
+
+#rrate{
+  left:9.70464% !important;
+  top:75.84635% !important;
+  width:15.18987% !important;
+  height:2.86458% !important;
+}
+
+
+#bprice{
+  left:63.43179% !important;
+  top:60.87240% !important;
+  width:16.45570% !important;
+  height:2.53906% !important;
+}
+
+
+#bqty{
+  left:63.43179% !important;
+  top:64.32292% !important;
+  width:15.47117% !important;
+  height:2.79948% !important;
+}
+
+
+#bdetailunit{
+  left:63.43179% !important;
+  top:67.96875% !important;
+  width:15.61181% !important;
+  height:2.73438% !important;
+}
+
+
+#btotaldiff{
+  left:63.43179% !important;
+  top:71.87500% !important;
+  width:15.47117% !important;
+  height:2.73438% !important;
+}
+
+
+#brate{
+  left:63.57243% !important;
+  top:75.91146% !important;
+  width:15.33052% !important;
+  height:2.79948% !important;
+}
+
+
+/* 負け側4・5段目は既存JSの空文字をそのまま尊重 */
+#rtotaldiff:empty,
+#btotaldiff:empty,
+#rrate:empty,
+#brate:empty{
+  display:none !important;
+}
+
 </style>
 </head>
 
