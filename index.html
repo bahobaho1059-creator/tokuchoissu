@@ -634,6 +634,75 @@ select.unit{
   display:block;
 }
 
+
+/* =========================================================
+   ②案内カード化 — Pass 3
+   FIX2の既存「比較単位を変更 / 100gあたりで比較」を
+   カード形状を残したまま案内表示へ転用。
+   ①完成候補・②ロゴ・入力UI・比較ボタン・③・JSは変更しない。
+   ========================================================= */
+
+#inputGuideOldLeft,
+#inputGuideOldRight{
+  position:absolute;
+  background:#fffdf8;
+  z-index:6;
+  pointer-events:none;
+}
+
+/* 左: 歯車アイコン＋「比較単位を変更」の焼き込み文字だけを覆う */
+#inputGuideOldLeft{
+  left:7.5%;
+  top:72.15%;
+  width:39.5%;
+  height:4.0%;
+  border-radius:14px;
+}
+
+/* 右: 「100gあたりで比較」＋▼の焼き込み文字だけを覆う */
+#inputGuideOldRight{
+  left:49.0%;
+  top:72.15%;
+  width:42.5%;
+  height:4.0%;
+  border-radius:14px;
+}
+
+#inputGuideMain,
+#inputGuideSub{
+  position:absolute;
+  z-index:7;
+  margin:0;
+  padding:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  white-space:nowrap;
+  pointer-events:none;
+  line-height:1;
+}
+
+#inputGuideMain{
+  left:8.0%;
+  top:72.42%;
+  width:55.0%;
+  height:3.4%;
+  color:#4c3b2e;
+  font-size:clamp(13px,3.25vw,22px);
+  font-weight:700;
+}
+
+#inputGuideSub{
+  left:63.0%;
+  top:72.42%;
+  width:27.5%;
+  height:3.4%;
+  color:#79ad50;
+  font-size:clamp(11px,2.85vw,19px);
+  font-weight:700;
+}
+
 </style>
 <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@900&display=swap" rel="stylesheet">
 </head>
@@ -668,6 +737,11 @@ select.unit{
     <option>ml</option>
     <option>個</option>
   </select>
+
+  <div id="inputGuideOldLeft" aria-hidden="true"></div>
+  <div id="inputGuideOldRight" aria-hidden="true"></div>
+  <div id="inputGuideMain" aria-hidden="true">単位は各商品の右側で選べます</div>
+  <div id="inputGuideSub" aria-hidden="true">g・ml・個に対応</div>
 
   <button class="hit compare-btn" aria-label="比較する"></button>
   <button class="hit home-btn" aria-label="ホーム"></button>
