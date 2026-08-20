@@ -553,6 +553,27 @@ select.unit{
 #rtotaldiff:empty,#btotaldiff:empty,#rrate:empty,#brate:empty{
   display:none;
 }
+
+/* =========================================================
+   Pass 29 — 上段勝者名の位置だけ修正
+   Screenshot measurement:
+   current center = (560.5, 1275.0) px
+   target center  = (627.5, 1214.5) px
+   delta          = X +67.0px / Y -60.5px
+   Only #winner position is changed.
+   ========================================================= */
+#winner{
+  position:absolute;
+  left:27.96919%;
+  top:28.89094%;
+  width:29.5%;
+  font-size:clamp(20px,5.15vw,34px);
+  font-weight:800;
+  line-height:1.04;
+  white-space:nowrap;
+  margin:0;
+  padding:0;
+}
 </style>
 </head>
 
