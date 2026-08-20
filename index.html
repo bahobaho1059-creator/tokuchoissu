@@ -73,6 +73,7 @@ body{
 }
 
 .back-btn{
+  z-index:10;
   left:2%;
   top:1%;
   width:17%;
@@ -613,6 +614,26 @@ select.unit{
   display:block;
 }
 
+
+/* =========================================================
+   ② INPUT logo overlay — FIX2実測版
+   FIX2: 711×1536
+   x=160px / y=35px / w=380px / h=153px
+   #①完成FIXには一切影響しない。
+   ========================================================= */
+#inputBrandLogo{
+  position:absolute;
+  left:22.50352%;
+  top:2.27865%;
+  width:53.44585%;
+  height:auto;
+  z-index:5;
+  pointer-events:none;
+  user-select:none;
+  -webkit-user-drag:none;
+  display:block;
+}
+
 </style>
 <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@900&display=swap" rel="stylesheet">
 </head>
@@ -627,6 +648,7 @@ select.unit{
 </section>
 
 <section id="input" class="screen">
+  <img id="inputBrandLogo" src="assets/tokuchoiss-logo-input-v1.png?v=20260821-input1" alt="得チョイっす。 チョイっと比較、得するチョイス。">
   <button class="hit back-btn" aria-label="もどる"></button>
 
   <input id="rp" class="field" inputmode="decimal" aria-label="赤コーナー価格">
