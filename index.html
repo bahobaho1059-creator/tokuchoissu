@@ -52,7 +52,7 @@ body{
 
 #result{
   display:none;
-  background-image:url("assets/FIX3-final.PNG?v=20260820-pass31");
+  background-image:url("assets/FIX3-final.PNG?v=20260820-pass35");
   aspect-ratio:711/1536
 }
 
@@ -193,7 +193,7 @@ select.unit{
   top:23.45%;
   width:85.4%;
   height:17.05%;
-  border:3px solid transparent;
+  border:0 solid transparent;
   border-radius:24px;
   z-index:4;
   pointer-events:none
@@ -560,6 +560,33 @@ select.unit{
   text-align:center;
   pointer-events:none;
 }
+
+/* =========================================================
+   Pass 35 — winner color border, separated from winner layout
+   IMPORTANT:
+   #winnerFrame remains the coordinate container for #winner only.
+   #winnerBorder is a sibling visual overlay, so a 3px border can NEVER
+   alter #winner's containing block or move the winner text.
+   Geometry is mapped to the actual white result-card outer edge in
+   FIX3-final.PNG.
+   ========================================================= */
+#winnerBorder{
+  position:absolute;
+  left:7.23227%;
+  top:24.72184%;
+  width:83.86648%;
+  height:19.81%;
+  box-sizing:border-box;
+  border-width:3px;
+  border-style:solid;
+  border-color:transparent;
+  border-radius:24px;
+  background:transparent;
+  z-index:6;
+  pointer-events:none;
+  visibility:visible;
+  opacity:1;
+}
 </style>
 <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@900&display=swap" rel="stylesheet">
 </head>
@@ -600,6 +627,7 @@ select.unit{
 
   <div id="wincover" class="cover"></div>
 
+  <div id="winnerBorder" aria-hidden="true"></div>
   <div id="winnerFrame">
     <div id="winner" class="dynamic"></div>
   </div>
@@ -727,7 +755,7 @@ $(".compare-btn").onclick=()=>{
 
   $("#winner").textContent = red ? "赤コーナー" : "青コーナー";
   $("#winner").style.color = red ? "#e53935" : "#168fe8";
-  $("#winnerFrame").style.borderColor = red ? "#e53935" : "#168fe8";
+  $("#winnerBorder").style.borderColor = red ? "#e53935" : "#168fe8";
 
   $("#detailUnitLabel").textContent=`${label}の単価`;
 
