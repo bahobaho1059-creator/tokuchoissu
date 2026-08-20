@@ -65,6 +65,7 @@ body{
 }
 
 .start-btn{
+  z-index:60;
   left:26%;
   top:53.6%;
   width:48%;
@@ -587,6 +588,38 @@ select.unit{
   visibility:visible;
   opacity:1;
 }
+
+/* =========================================================
+   Start logo overlay — 原本α / ①正式ロゴ表示FIX
+   711×1536基準。①だけに作用。
+   ========================================================= */
+#startLogoMask{
+  position:absolute;
+  left:21.94093%;
+  top:40.23438%;
+  width:56.54008%;
+  height:12.69531%;
+  border-radius:24px;
+  background:#fffbed;
+  z-index:40;
+  pointer-events:none;
+}
+
+#startBrandLogo{
+  position:absolute;
+  left:14.90858%;
+  top:39.25781%;
+  width:70.32349%;
+  height:auto;
+  z-index:50;
+  pointer-events:none;
+  user-select:none;
+  -webkit-user-drag:none;
+  display:block !important;
+  visibility:visible !important;
+  opacity:1 !important;
+}
+
 </style>
 <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@900&display=swap" rel="stylesheet">
 </head>
@@ -595,6 +628,8 @@ select.unit{
 <main id="app">
 
 <section id="start" class="screen">
+  <div id="startLogoMask" aria-hidden="true"></div>
+  <img id="startBrandLogo" src="assets/tokuchoiss-logo.png?v=20260821-logo-final1" alt="得チョイっす。 チョイっと比較、得するチョイス。">
   <button class="hit start-btn" aria-label="はじめる"></button>
 </section>
 
