@@ -597,24 +597,7 @@ select.unit{
    Only #start is affected.
    ========================================================= */
 #startLogoMask{
-  position:absolute;
-  left:21.50%;
-  top:40.65%;
-  width:57.00%;
-  height:11.60%;
-  border-radius:50%;
-  background:
-    radial-gradient(
-      ellipse at center,
-      rgba(255,251,237,1) 0%,
-      rgba(255,251,237,1) 68%,
-      rgba(255,251,237,.96) 78%,
-      rgba(255,251,237,.72) 87%,
-      rgba(255,251,237,.28) 94%,
-      rgba(255,251,237,0) 100%
-    );
-  z-index:4;
-  pointer-events:none;
+  display:none !important;
 }
 
 #startBrandLogo{
@@ -639,7 +622,7 @@ select.unit{
 
 <section id="start" class="screen">
   <div id="startLogoMask" aria-hidden="true"></div>
-  <img id="startBrandLogo" src="assets/tokuchoiss-logo.png?v=20260821-reuse-success1" alt="得チョイっす。 チョイっと比較、得するチョイス。">
+  <img id="startBrandLogo" src="assets/tokuchoiss-logo-internal-opaque-v2.png?v=20260821-internal-opaque-v2" alt="得チョイっす。 チョイっと比較、得するチョイス。">
   <button class="hit start-btn" aria-label="はじめる"></button>
 </section>
 
