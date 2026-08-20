@@ -703,6 +703,127 @@ select.unit{
   font-weight:700;
 }
 
+
+/* =========================================================
+   #100gあたり精査起点 → Pass 5
+   FIX3に焼き込まれた「100gあたり」3か所だけを局所カバーし、
+   g/kg → 100gあたり
+   ml/L  → 100mlあたり
+   個    → 1個あたり
+   と動的表示する。
+   FIX3画像・①・②・既存結果座標・計算ロジックは維持。
+   ========================================================= */
+
+/* 黄色帯：焼き込み「100gあたり」だけを覆う */
+#savingUnitCover{
+  position:absolute;
+  left:24.10%;
+  top:38.78%;
+  width:24.20%;
+  height:3.45%;
+  z-index:4;
+  pointer-events:none;
+  border-radius:14px;
+  background:linear-gradient(
+    90deg,
+    rgb(254,222,139) 0%,
+    rgb(253,216,117) 55%,
+    rgb(251,210,102) 100%
+  );
+}
+
+#savingUnitDynamic{
+  position:absolute;
+  left:24.10%;
+  top:39.18%;
+  width:24.20%;
+  height:2.65%;
+  z-index:5;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  white-space:nowrap;
+  color:#111;
+  font-size:clamp(12px,3.05vw,21px);
+  font-weight:700;
+  line-height:1;
+  pointer-events:none;
+}
+
+/* 赤・青カード：焼き込み「100gあたりの単価」だけを覆う */
+#rCardUnitCover,
+#bCardUnitCover{
+  position:absolute;
+  top:48.25%;
+  width:31.20%;
+  height:3.55%;
+  z-index:4;
+  pointer-events:none;
+  border-radius:12px;
+}
+
+#rCardUnitCover{
+  left:7.25%;
+  background:rgb(255,250,250);
+}
+
+#bCardUnitCover{
+  left:56.55%;
+  background:rgb(249,252,255);
+}
+
+#rCardUnitDynamic,
+#bCardUnitDynamic{
+  position:absolute;
+  top:48.70%;
+  width:31.20%;
+  height:2.65%;
+  z-index:5;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  white-space:nowrap;
+  font-size:clamp(10px,2.55vw,18px);
+  font-weight:700;
+  line-height:1;
+  pointer-events:none;
+}
+
+#rCardUnitDynamic{
+  left:7.25%;
+  color:#ef3f35;
+}
+
+#bCardUnitDynamic{
+  left:56.55%;
+  color:#167bd7;
+}
+
+
+/* =========================================================
+   #100gあたり精査起点 — Pass 6 SAFE GUARD
+   変更対象は次の3箇所だけ:
+   1) 黄色帯
+   2) 赤カード
+   3) 青カード
+
+   「くわしい比較」中央の
+   100g/100ml/1個あたりの単価
+   はFIX3焼き込みをそのまま使用し、HTML側では一切描画しない。
+   ========================================================= */
+#detailUnitLabel{
+  display:none !important;
+}
+
+/* Pass 6: 3 dynamic unit overlays only */
+#savingUnitCover,#savingUnitDynamic,
+#rCardUnitCover,#bCardUnitCover,
+#rCardUnitDynamic,#bCardUnitDynamic{
+  pointer-events:none !important;
+}
+
 </style>
 <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@900&display=swap" rel="stylesheet">
 </head>
@@ -754,6 +875,14 @@ select.unit{
 <section id="result" class="screen">
 
   <div id="wincover" class="cover"></div>
+
+  <div id="savingUnitCover" aria-hidden="true"></div>
+  <div id="savingUnitDynamic" aria-hidden="true"></div>
+
+  <div id="rCardUnitCover" aria-hidden="true"></div>
+  <div id="bCardUnitCover" aria-hidden="true"></div>
+  <div id="rCardUnitDynamic" aria-hidden="true"></div>
+  <div id="bCardUnitDynamic" aria-hidden="true"></div>
 
   <div id="winnerBorder" aria-hidden="true"></div>
   <div id="winnerFrame">
@@ -843,6 +972,10 @@ function unitLabel(unit){
   return "1個あたり";
 }
 
+function resultUnitText(unit){
+  return unitLabel(unit);
+}
+
 function confetti(){
   const c=document.createElement("div");
   c.className="confetti";
@@ -893,6 +1026,11 @@ $(".compare-btn").onclick=()=>{
   const unit=ru;
   const base=unitType(unit)==="count" ? 1 : 100;
   const label=unitLabel(unit);
+  const resultLabel=resultUnitText(unit);
+
+  $("#savingUnitDynamic").textContent=resultLabel;
+  $("#rCardUnitDynamic").textContent=`${resultLabel}の単価`;
+  $("#bCardUnitDynamic").textContent=`${resultLabel}の単価`;
 
   const r=rp/rqBase*base;
   const b=bp/bqBase*base;
@@ -904,7 +1042,7 @@ $(".compare-btn").onclick=()=>{
   $("#winner").style.color = red ? "#e53935" : "#168fe8";
   $("#winnerBorder").style.borderColor = red ? "#e53935" : "#168fe8";
 
-  $("#detailUnitLabel").textContent=`${label}の単価`;
+  /* Pass 6 protected: FIX3 detailed-comparison center label remains baked into image. */
 
   /*
     FIX3-final側に「円お得！」が残っているため、
