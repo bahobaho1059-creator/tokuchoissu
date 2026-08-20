@@ -586,6 +586,68 @@ select.unit{
   display:none !important;
 }
 
+
+/* =========================================================
+   Pass 26 — 「くわしい比較」5矩形の完全センター再設計
+   新FIX③ (711×1536) の実矩形中心を基準に配置。
+   勝者側：5数値 / 負け側：3数値。
+   各数値は各薄赤・薄青矩形の上下左右センターに固定する。
+   ========================================================= */
+
+/* 共通：矩形の中心座標そのものを基準にする */
+#rprice,#bprice,
+#rqty,#bqty,
+#rdetailunit,#bdetailunit,
+#rtotaldiff,#btotaldiff,
+#rrate,#brate{
+  position:absolute !important;
+  width:15.5% !important;
+  height:3.05% !important;
+  margin:0 !important;
+  padding:0 !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  text-align:center !important;
+  line-height:1 !important;
+  transform:translate(-50%,-50%) !important;
+  box-sizing:border-box !important;
+}
+
+/* FIX③の薄赤矩形・薄青矩形の水平中心 */
+#rprice,#rqty,#rdetailunit,#rtotaldiff,#rrate{
+  left:17.35% !important;
+}
+#bprice,#bqty,#bdetailunit,#btotaldiff,#brate{
+  left:71.20% !important;
+}
+
+/* 5つの矩形の垂直中心（FIX③実画像から算出） */
+#rprice,#bprice{
+  top:62.11% !important;
+}
+#rqty,#bqty{
+  top:65.72% !important;
+}
+#rdetailunit,#bdetailunit{
+  top:69.34% !important;
+}
+#rtotaldiff,#btotaldiff{
+  top:73.24% !important;
+}
+#rrate,#brate{
+  top:77.25% !important;
+}
+
+/* 負け側の4・5段目は既存JSで空文字。
+   空の場合は完全非表示にし、勝者5個／負け側3個を保証する。 */
+#rtotaldiff:empty,
+#btotaldiff:empty,
+#rrate:empty,
+#brate:empty{
+  display:none !important;
+}
+
 </style>
 </head>
 
